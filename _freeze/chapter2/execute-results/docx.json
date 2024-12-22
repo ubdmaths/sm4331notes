@@ -1,0 +1,21 @@
+{
+  "hash": "cfa463c4af234407edf5eb13babdb1e2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# Commonly used probability models\n\n## Poisson-Binomial relationship\n\nThe Poisson distribution plays a useful approximation role for the binomial:\n$$\nX\\sim\\Bin(n,p) \\ \\ \\Rightarrow \\ \\ X \\approx \\Pois(np)\n$$\nwhen $n$ is large ($n>20$) and $np$ is small ($np<5$). \nThe reason is the Poisson can be seen as the *limiting case* to the binomial as $n\\to\\infty$ while $\\E(X)=np$ remains fixed.\n\n\\begin{align*}\n\\lim_{n\\to\\infty} \\Pr(X=x)\n&= \\lim_{n\\to\\infty} \\frac{n!}{x!(n-x)!}\\left(\\frac{\\lambda}{n} \\right)^x \\left(1 - \\frac{\\lambda}{n} \\right)^{n-x} \\\\\n&= \\frac{\\lambda^x}{x!} \\lim_{n\\to\\infty}\n\\myunderbrace{\\frac{n!}{n^x(n-x)!}}{\\to 1}\n\\,\n\\myunderbrace{\\left(1 - \\frac{\\lambda}{n} \\right)^n}{\\to e^{-\\lambda}}\n\\,\n\\myunderbrace{\\left(1 - \\frac{\\lambda}{n} \\right)^{-x}}{\\to 1} \\\\\n&=  \\frac{e^{-\\lambda}\\lambda^x}{x!} \\\\\n&= \\Pr(Y=x), Y\\sim\\Pois(\\lambda).\n\\end{align*}\n\n\nThe reason is that the Poisson can be seen as the *limiting case* to the binomial as $n\\to\\infty$ while $\\E(X)=np$ remains fixed.\n\n\n\n\n\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\npoibin_df <- function(n, p, x = 0:10) {\n  lambda <- n * p\n  the_title <- paste0(\"n = \", n, \", p = \", p)\n  \n  tibble(\n    x = x,\n    bin = dbinom(x, size = n, prob = p),\n    poi = dpois(x, lambda = n * p)\n  ) %>%\n    pivot_longer(-x) %>%\n    mutate(title = the_title)\n}\n\nplot_df <- bind_rows(\n  poibin_df(20, 0.05),\n  poibin_df(10, 0.3),\n  poibin_df(100, 0.3, 20:30),\n  poibin_df(1000, 0.01)\n) \nmylevels <- unique(plot_df$title)\nplot_df$title <- factor(plot_df$title, levels = mylevels)\n# levels(plot_df$title) <- mylevels\n  \nggplot(plot_df, aes(x, value, fill = name)) +\n  geom_bar(stat = \"identity\", position = \"dodge\", alpha = 0.7) +\n  facet_wrap(. ~ title, ncol = 2, scales = \"free\") +\n  scale_x_continuous(breaks = 0:100) +\n  # scale_fill_manual(values = c(palgreen, palred)) +\n  labs(y = \"P(X=x)\", col = NULL, fill = NULL) +\n  theme(legend.position = \"top\")\n```\n\n::: {.cell-output-display}\n![](chapter2_files/figure-docx/fig-poisbin-1.png){#fig-poisbin}\n:::\n:::\n\n\n\n\n\n\n\n\n\n\n\n\n## Memoryless property\n\n$X$ is a positive rv and memoryless, in the sense that for all $t>s>0$,\n$$\n\\Pr(X > t+s \\mid X>s) = \\Pr(X > t)\n$$\nif and only if it is exponentially distributed^[https://perplex.city/memorylessness-at-the-bus-stop-f2c97c59e420?gi=3602158da66b].\n\n> Given that we have been waiting for $s$ units of time, the probability that we wait a further $t$ units of time is independent to the first fact!\n\n\n::: {#exm-memoryless}\nAssume that bus waiting times are exponentially distributed, and you are concerned about the event $A=$ a bus arrives in the next minute.\nLet $p_i = \\Pr(A|B_i)$ where\n\ni. $B_1 =$ you just arrived to the station; and\nii. $B_2 =$ you've been sitting there for 20 minutes already.\n\nThen $p_1=p_2$.\n:::\n\n\n\n## Relationships\n\n![Relationships among various univariate distributions.](figures/dist_rel.png){#fig-dist-rel}",
+    "supporting": [
+      "chapter2_files/figure-docx"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

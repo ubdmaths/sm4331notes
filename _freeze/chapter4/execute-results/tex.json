@@ -1,0 +1,21 @@
+{
+  "hash": "0df5d595a87d29a7eec20cef5622a3b0",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\n\n\n\n\n\n\n\n\n# Large sample approximations\n\n## Illustration of convergence in probability\n\nWhile there is no guarantee that the points will eventually stay inside the $\\epsilon$-band, the probability of it being outside the band tends to 0.\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nset.seed(123)\neps <- 0.15\nplot_df <- tibble(\n  x = 1:25,\n  y = 1 / x ^ {1/1.2} + rnorm(25, sd = 0.1)) %>%\n  mutate(\n    y = case_when(y > 0.45 & x > 2 ~ 0.45, TRUE ~ y),\n    up = y +  8.5 * eps / (x ^ 1),\n    lo = y -  8.5 * eps / (x ^ 1),\n    dist = up - lo,\n    longer = dist > (2 * eps)\n  )  %>%\n  filter(x > 2) \n\nggplot(plot_df, aes(x, y, col = longer)) +\n  geom_hline(yintercept = 0, linetype = \"dashed\", col = \"grey60\") +\n  geom_hline(yintercept = c(eps, -eps), col = \"gray\") +\n  annotate(\"rect\", xmax = Inf, xmin = -Inf, ymax = eps, ymin = -eps, alpha = 0.1) +\n  geom_point() + \n  geom_errorbar(aes(ymin = lo, ymax = up), width = 0.4) +\n  coord_cartesian(ylim = c(-0.3, 0.6), xlim = c(3, 25)) +\n  scale_y_continuous(breaks = c(-eps, 0, eps), \n                     labels = c(expression(X - epsilon), \"X\", \n                                expression(X + epsilon))) +\n  scale_colour_brewer(palette = \"Set1\") +\n  labs(y = expression(X[n]), x = \"n\") +\n  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +\n  guides(col = \"none\") +\n  geom_errorbar(aes(x = 2.05, y = 0, ymax = 0.05, ymin = -0.05), col = \"black\", \n                width = 0.4, linewidth = 1)\n```\n\n::: {.cell-output-display}\n![](chapter4_files/figure-pdf/fig-convinprob-1.pdf){#fig-convinprob fig-pos='H'}\n:::\n:::\n\n\n\n\n\n\n## Almost sure convergence\n\n::: {#def-almostsureconvergence}\n### Almost sure convergence\n\n$X_n$ converges to $X$ in *almost surely* if for every $\\epsilon>0$,\n$$\n\\Pr\\left(\\lim_{n\\to\\infty} |X_n-X|\\geq\\epsilon \\right) = 0.  \n%\\ \\Leftrightarrow \\ \\Pr\\left(\\lim_{n\\to\\infty} |X_n-X| < \\epsilon \\right) = 1.\n$$ \nWe write\n$X_n\\xrightarrow{\\text{a.s.}}X$.\n\n:::\n\nThat is, $X_n(\\omega)\\to X(\\omega)$ for all outcomes $\\omega \\in \\Omega$, except perhaps for a collection of outcomes $\\omega \\in A$ with $\\Pr(A) = 0$.\nThis is stronger than (i.e. it implies, but is not implied by) convergence in probability.\nThere is no relationship between convergence in mean square and convergence almost surely.\n\n## The Strong Law of Large Numbers\n\nWith the same setup as for WLLN, a different argument leads to the stronger conclusion as per the result below.\n\n::: {#thm-slln}\n### Strong Law of Large Numbers\n\nLet $X_1,X_2,\\dots$ be iid rvs with mean $\\mu$ and variance $\\sigma^2$. \nLet $\\bar X_n$ denote the sample mean, i.e. \n$$\n\\bar X_n = \\frac{1}{n}\\sum_{i=1}^n X_i. \n$$ \nThen, $\\bar X_n{\\xrightarrow{\\text{a.s.}}} \\mu$ as $n\\to\\infty$, i.e.\n$$\n\\Pr\\left(\\lim_{n\\to\\infty} |\\bar X_n-\\mu| < \\epsilon \\right) = 1.\n$$\n:::\n\nProof is outside the scope of this module.\nIt's satisfying to know that the SLLN exists, but for our purposes, WLLN suffices!\n\n\n\n",
+    "supporting": [
+      "chapter4_files/figure-pdf"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

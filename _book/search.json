@@ -1,0 +1,332 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "SM-4331 Advanced Statistics",
+    "section": "",
+    "text": "Preface\nThese are the notes for SM-4331 Advanced Statistics.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "chapter1.html",
+    "href": "chapter1.html",
+    "title": "1  Probability Theory Primer",
+    "section": "",
+    "text": "1.1 Algebras of sets\nThis is the mathematical structure that allows us to observe and measure random events. Logically,\nIf 1–3 holds, then \\({\\mathcal F}\\) is said to be an algebra over \\(\\Omega\\). In addition, if you can “add” up infinitely many countable things, \\({\\mathcal F}\\) is called a \\(\\sigma\\)-algebra. \\[\nA_1,A_2,\\dots \\in{\\mathcal F}\\Rightarrow \\bigcup_{i=1}^\\infty A_i \\in {\\mathcal F}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter1.html#algebras-of-sets",
+    "href": "chapter1.html#algebras-of-sets",
+    "title": "1  Probability Theory Primer",
+    "section": "",
+    "text": "If an event \\(A\\) can be observed, then its complement can be too. I.e. \\(A \\in {\\mathcal F}\\Rightarrow A^c \\in {\\mathcal F}\\).\nAt least one outcome can be observed, i.e. \\(\\Omega \\in {\\mathcal F}\\).\nIf two or more events are observed, then at least one of them (or both) can be observed, i.e. \\[\nA,B \\in {\\mathcal F}\\Rightarrow A \\cup B \\in {\\mathcal F}\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter1.html#why-sigma-algebra",
+    "href": "chapter1.html#why-sigma-algebra",
+    "title": "1  Probability Theory Primer",
+    "section": "1.2 Why \\(\\sigma\\)-algebra?",
+    "text": "1.2 Why \\(\\sigma\\)-algebra?\nIn probability theory and statistics, an experiment (or trial) is a procedure that can be repeated and has a well-defined set of possible outcomes (known as the sample space \\(\\Omega\\)). Events are thought of as being subsets of \\(\\Omega\\), while probabilities are merely a mapping from some event space \\(\\mathcal F\\) to \\([0,1]\\).\nTo make this idea concrete, for the die roll example, \\(\\Omega=\\{1,\\dots,6\\}\\), while an event could be \\(E=\\{2,4,6\\}\\subset \\Omega\\) (getting an even number). The probability of the event \\(E\\) occurring is \\(\\operatorname{P}(E)=\\frac{1}{2}\\)–so it indeed behaves like a function, taking input some event and spitting out a number between 0 and 1.\nNote here that \\(\\mathcal F\\) is not \\(\\Omega\\)–it has to be bigger than \\(\\Omega\\) as we’re not just interested in singleton outcomes. A good starting point would be \\(\\mathcal F = \\mathcal P(\\Omega)\\), the set of all subsets of \\(\\Omega\\), which should contain all possible events constructed from the set of outcomes.\n\n1.2.1 Rules of probability\nHaving abstracted the notion of \\(\\Omega\\) and \\(\\mathcal F\\), we should also define some rules that the probability function \\(\\operatorname{P}:\\mathcal P(\\Omega)\\to[0,1]\\) must follow. Let us list down a few:\n\n\\(\\operatorname{P}(E) \\geq 0, \\forall E\\);\n\\(\\operatorname{P}(\\varnothing)=0\\) and \\(\\operatorname{P}(\\Omega) = 1\\);1\nIf \\(E_1 \\cap E_2 = \\varnothing\\), then \\(\\operatorname{P}(E_1 \\cup E_2)=\\operatorname{P}(E_1) + \\operatorname{P}(E_2)\\); and\nIf \\(E_1, E_2,\\dots\\) are mutually disjoint events, then \\(\\operatorname{P}\\Big(\\bigcup_{i=1}^\\infty E_i \\Big) = \\sum_{i=1}^\\infty \\operatorname{P}(E_i)\\).\n\nIndeed, these are quite logical impositions that ensure we don’t end up with nonsensical probabilities. For instance, by ii. and iii., modelling a (biased) coin toss by \\(\\operatorname{P}(H)=0.7\\) necessitates \\(\\operatorname{P}(T)=0.3\\) and not anything else, e.g. \\(\\operatorname{P}(T)=0.5\\).\n\n\n1.2.2 The need for measure theory\nWe’ve managed to come up with probability rules so far without the need for measure theory, so what’s the problem? The problem is that in the way that we’ve described it, this is actually too much to ask! There will be instances where this whole framework fails and we can’t assign probabilities properly, especially when we need it the most.\nConsider that, with all these demands, we can’t even define the uniform random variable on \\(\\Omega=[0,1]\\)! That is, no mapping \\(\\operatorname{P}:\\mathcal P([0,1])\\to[0,1]\\) exists such that \\(\\operatorname{P}([a,b])=b-a\\) for \\(0\\leq a \\leq b \\leq 1\\) which satisfies all of the rules i. to iv. listed above. For a proof, see the appendix. Evidently some concession has to be made (which one?), and the probability map must be constructed more carefully. The answer lies in measure theory.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter1.html#an-unmeasurable-set",
+    "href": "chapter1.html#an-unmeasurable-set",
+    "title": "1  Probability Theory Primer",
+    "section": "1.3 An unmeasurable set",
+    "text": "1.3 An unmeasurable set\nAs mentioned, we are unable to define a uniform probability measure on the unit interval, given by \\[\n\\operatorname{P}([a,b]) = b-a\n\\] that satisfies all the probability rules listed in i. to iv. earlier. On the face of it, all the rules themselves are satisfied: \\(\\operatorname{P}(\\Omega)=\\operatorname{P}([0,1])=1\\), \\(\\operatorname{P}(\\varnothing)=\\operatorname{P}([a,a])=0\\) (for any \\(a\\in[0,1]\\)), and certainly probabilities of disjoint subsets of \\([0,1]\\) are just the sum of the lengths of the intervals.\nThese are all great properties to have, so we must concede instead on the domain of the probability function, i.e. the event space. The proof of the proposition below in instructive, in that it illustrates the existence of a “non-measurable” set. That is, there are such events (subsets in \\([0,1]\\)) for which we are unable to assign probabilities to.\n\nProposition 1.1 There does not exist a definition of \\(\\operatorname{P}:\\mathcal P([0,1])\\to[0,1]\\) satisfying \\(\\operatorname{P}([a,b])=b-a\\) and i. to iv. (as listed earlier).\n\n\nProof. All we need to show is the existence of one such subset of \\([0,1]\\) whose measure is undefined. The set we are about to construct is called the Vitali set2, after Giuseppe Vitali who described it in 1905.\nBefore proceeding, we introduce some notation. For a uniform measure on \\([0,1]\\), one expects that the measure of some subset \\(A \\subseteq [0,1]\\) to be unaffected by “shifting” (with wrap-around) of that subset by some fixed amount \\(r\\in[0,1]\\). Define the \\(r\\)-shift of \\(A\\subseteq [0,1]\\) by \\[\nA \\oplus r := \\left\\{ a + r \\mid a \\in A, a+r \\leq 1 \\right\\} \\cup \\left\\{ a + r - 1 \\mid a \\in A, a+r &gt; 1 \\right\\}.\n\\] Then we should have \\[\n\\operatorname{P}(A \\oplus r) = \\operatorname{P}(A).\n\\] For example, \\(\\operatorname{P}([0.7, 0.9] \\oplus 0.2) = \\operatorname{P}([0.9,1] \\cup [0,0.1]) = 0.2\\).\nNow, define an equivalence relation on \\([0,1]\\) by the following: \\[x\\sim y \\Rightarrow y-x \\in \\mathbb Q\\] That is, two real numbers \\(x\\) and \\(y\\) are deemed to be similar if their difference is a rational number. The intent is to segregate all the real numbers \\(x\\in[0,1]\\) by this equivalence relation, and collect them into groups called equivalence classes, denoted by \\([x]\\). Here, \\([x]\\) is the set \\(\\{y \\in [0,1] \\mid x \\sim y\\}.\\) For instance,\n\nThe equivalence class of \\(0\\) is the set of real numbers \\(x\\) such that \\(x \\sim 0\\), i.e. \\([0] = \\{y \\in [0,1] \\mid y-0\\in\\mathbb Q \\}\\), which is the set of all rational numbers in \\([0,1]\\).\nThe equivalence class of an irrational number \\(z_1\\in[0,1]\\) is clearly not in \\([0]\\), thus would represent a different equivalence class \\([z_1]=\\{y \\in [0,1] \\mid y-z_1 \\in \\mathbb Q \\}\\).\nYet another irrational number \\(z_2\\not\\in [z_1]\\) would exist, i.e. a number \\(z_2\\in[0,1]\\) such that \\(z_2-z_1 \\not\\in\\mathbb Q\\), and thus would represent a different equivalence class \\([z_2]\\).\nAnd so on…\n\nThe equivalence classes may therefore be represented by \\([0],[z_1],[z_2],\\dots\\) where \\(z_i\\) are all irrational numbers that differ by an irrational number, and there are uncountably many such numbers, and therefore classes.\nConstruct the Vitali set \\(V\\) as follows: Take precisely one element from each equivalent class, and put it in \\(V\\). As a remark, such a \\(V\\) must surely exist by the Axiom of Choice3.\nConsider now the union of shifted Vitali sets by some rational value \\(r\\in[0,1]\\), \\[\n\\bigcup_{r} (V \\oplus r)\n\\] As a reminder, the set of rational numbers is countably infinite4. We make two observations:\n\nThe equivalence relation partitions the interval \\([0,1]\\) into a disjoint union of equivalence classes. In other words, the sets \\((V \\oplus r)\\) and \\((V \\oplus s)\\) are disjoint for any rationals \\(r\\neq s\\), such that \\(r,s\\in[0,1]\\). If they were not disjoint, this would mean that there exists some \\(x,y\\in[0,1]\\) with \\(x+r\\in(V \\oplus r)\\) and \\(y+s\\in (V \\oplus s)\\) such that \\(x+r=y+s\\). But then this means that \\(x-y=s-r\\in\\mathbb Q\\) so \\(x\\) and \\(y\\) are in the same equivalent class, and this is a contradiction. Importantly, \\[\\begin{equation}\\label{eq:contr1}\n\\operatorname{P}\\left(\\bigcup_{r} (V \\oplus r)\\right) = \\sum_r \\operatorname{P}(V \\oplus r) = \\sum_r \\operatorname{P}(V)\n\\end{equation}\\]\nEvery point in \\([0,1]\\) is contained in the union \\(\\bigcup_{r} (V \\oplus r)\\). To see this, fix a point \\(x\\) in \\([0,1]\\). Note that this point belongs to some equivalent class of \\(x\\), and in this equivalence class there exists some point \\(\\alpha\\) which belongs to \\(V\\) as well by construction. Hence, \\(\\alpha \\sim x\\), and thus \\(x-\\alpha=r\\in\\mathbb Q\\), implying that \\(x\\) is a point in the Vitali set \\(V\\) shifted by \\(r\\). Therefore, \\[[0,1] \\subseteq  \\bigcup_{r} (V \\oplus r).\\] and we may write \\[1 = \\operatorname{P}([0,1]) \\leq \\operatorname{P}\\left(\\bigcup_{r} (V \\oplus r)\\right)\\leq 1,\\] since the measure of any set contained in another must have smaller or equal measure (a relation implied by property iii.5) as well as all probabilities are less than equal to 16. We see that \\[\\begin{equation}\\label{eq:contr2}\n\\operatorname{P}\\left(\\bigcup_{r} (V \\oplus r)\\right) = 1.\n\\end{equation}\\]\n\nEquating \\(\\eqref{eq:contr1}\\) and \\(\\eqref{eq:contr2}\\) together, we find a contradiction: A countably infinite sum of a constant value can only equal \\(0\\), \\(+\\infty\\) or \\(-\\infty\\), but never 1.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter1.html#conditional-probability",
+    "href": "chapter1.html#conditional-probability",
+    "title": "1  Probability Theory Primer",
+    "section": "1.4 Conditional probability",
+    "text": "1.4 Conditional probability\n\nThe latest estimate puts the proportion of geology students at FOS to be 5%. A randomly selected student from FOS, Nafeesah, is described by her peers as someone who loves the outdoors and gets overly excited when shown something that is related to rocks.\n\nWhich statement is more likely?\n\nNafeesah is undertaking a BSc Geology programme.\nNafeesah is not undertaking a BSc Geology programme.\n\nLet\n\n\\(E\\) be the ‘evidence’\n\\(G\\) be the event that a student takes Geology\n\nThen \\[\n\\operatorname{P}(G|E) = \\frac{\\operatorname{P}(E|G)\\operatorname{P}(G)}{\\operatorname{P}(E)} \\approx \\frac{0.05}{\\operatorname{P}(E)}\n\\]\n\n\nCode\nx &lt;- seq(1e-10, 1, length = 100)\nplot_df &lt;- tibble(\n  x = x,\n  y = 0.05 / x\n)\n\nggplot(plot_df, aes(x, y)) +\n  geom_line() +\n  geom_segment(x = -Inf, xend = 0.05 / 0.5, y = 0.5,yend = 0.5,\n               linetype = \"dashed\", col = \"red3\") +\n  geom_segment(x = 0.05 / 0.5, xend = 0.05 / 0.5, y = 0.5, yend = -Inf,\n               linetype = \"dashed\", col = \"red3\") +\n  scale_y_continuous(limits = c(0, 1)) +\n  scale_x_continuous(breaks = seq(0, 1, by = 0.2)) +\n  labs(x = \"P(E)\", y = \"P(G|E)\")",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter1.html#bayesian-statistics",
+    "href": "chapter1.html#bayesian-statistics",
+    "title": "1  Probability Theory Primer",
+    "section": "1.5 Bayesian statistics",
+    "text": "1.5 Bayesian statistics\nSometime between 1746 and 1749, Rev. Thomas Bayes conducted this experiment.\n\nImagine a square, flat table. You throw a marker (e.g. a coin) but do not know where it lands. You ask an assistant to randomly throw a ball on the table. The assistant informs you whether it stopped to the left or right from the first ball. How to use this information to better estimate where your marker landed?\n\nThe Bayesian principle is about updating beliefs.\n\nLet \\(X \\in [0,1]\\) be the location of the ball on a horizontal axis.\nBefore any new information, any position \\(X\\) is possible, say \\(X\\sim\\mathop{\\mathrm{Unif}}(0,1)\\).\nLet \\(Y\\) be the number of times the assistant’s ball landed left of the marker after \\(n\\) throws. Then \\(Y|X \\sim \\mathop{\\mathrm{Bin}}(n,X)\\).\nWhat we want is information regarding \\(X|Y\\), which is obtained using Bayes Theorem \\[\n\\operatorname{P}(X\\in x|Y=y) = \\frac{\\operatorname{P}(Y=y|X\\in x)\\operatorname{P}(X\\in x)}{\\operatorname{P}(Y=y)}\n\\]\n\n\n\nCode\n# https://dosreislab.github.io/2019/01/27/ballntable.html\nset.seed(123)\nn &lt;- 15\nxy &lt;- runif(2) # position of coin after intial throw\nxy.2 &lt;- matrix(runif(2 * n), ncol=2) # additional n throws of the ball\n\npos &lt;- numeric(2)\npos[1] &lt;- sum(xy.2[,1] &lt; xy[1])\npos[2] &lt;- sum(xy.2[,2] &lt; xy[2])\n\njointf &lt;- function(pos = pos, n = n, N=100) {\n  a &lt;- pos[1]; b &lt;- pos[2]\n  x &lt;- y &lt;- seq(from=0, to=1, len=N)\n  xf &lt;- x^a * (1-x)^(n-a)\n  yf &lt;- y^b * (1-y)^(n-b)\n  z &lt;- xf %o% yf\n}\n\nCf &lt;- function(x, y, n) {\n  ( factorial(n+1) )^2 /\n  ( factorial(x) * factorial(n-x) * factorial(y) * factorial(n-y) )\n}\n\nz &lt;- jointf(pos, n) * Cf(pos[1], pos[2], n)\n\nas.data.frame(z) %&gt;%\n  `colnames&lt;-`(1:100 / 100) %&gt;%\n  rownames_to_column() %&gt;%\n  gather(key, value, -rowname) %&gt;%\n  mutate(rowname = as.numeric(rowname) / 100,\n         key = as.numeric(key)) %&gt;%\n  ggplot(aes(rowname, key, z = value)) +\n  geom_contour() +\n  geom_point(x = xy[1], y = xy[2]) +\n  lims(x = c(0, 1), y = c(0, 1))",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter1.html#probability-integral-transform",
+    "href": "chapter1.html#probability-integral-transform",
+    "title": "1  Probability Theory Primer",
+    "section": "1.6 Probability integral transform",
+    "text": "1.6 Probability integral transform\n\nTheorem 1.1 Let \\(X\\) have continuous cdf \\(F_X(x)\\) and define the random variable \\(Y\\) as \\(Y=F_X(X)\\). Then \\(Y\\) is uniformly distributed on \\((0,1)\\), that is \\(f_Y(y)=1 \\ \\forall y\\in[0,1]\\) with \\(\\operatorname{P}(Y\\leq y)=y\\).\n\n\nProof. \\[\\begin{align*}\n\\operatorname{P}(Y \\leq y)\n&= \\operatorname{P}(F_X(X) \\leq y) \\\\\n&= \\operatorname{P}\\big(X \\leq F_X^{-1}(y)\\big) \\\\\n&= F_X\\big(F_X^{-1}(y) \\big) = y.\n\\end{align*}\\]\n\nThe PIT is a special kind of transformation, useful for various statistical purposes. Suppose we wish to generate \\(X\\sim F_X\\)–this is done via \\(X=F_X^{-1}(U)\\) where \\(U\\sim\\mathop{\\mathrm{Unif}}(0,1)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter1.html#footnotes",
+    "href": "chapter1.html#footnotes",
+    "title": "1  Probability Theory Primer",
+    "section": "",
+    "text": "\\(\\varnothing = \\{ \\}\\) is the empty set.↩︎\nhttps://en.wikipedia.org/wiki/Vitali_set↩︎\nGiven a collection of non-empty sets, it is always possible to construct a new set by taking one element from each set in the original collection. See https://brilliant.org/wiki/axiom-of-choice/↩︎\nhttps://www.homeschoolmath.net/teaching/rational-numbers-countable.php↩︎\nLet \\(A\\) and \\(B\\) be such that \\(A \\subseteq B\\). Then we may write \\(B = A \\cup (B\\setminus A)\\) where the sets \\(A\\) and \\(B \\setminus A\\) are disjoint. Hence, \\(\\operatorname{P}(B)=\\operatorname{P}(A)+\\operatorname{P}(B \\setminus A)\\), and since probabilities are non-negative, we have that \\(\\operatorname{P}(B)\\geq \\operatorname{P}(A)\\).↩︎\nFor any \\(A\\), \\(\\operatorname{P}(\\Omega)=\\operatorname{P}(A \\cup A^c) = \\operatorname{P}(A) + \\operatorname{P}(A^c) = 1\\), so \\(\\operatorname{P}(A)\\leq 1\\).↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability Theory Primer</span>"
+    ]
+  },
+  {
+    "objectID": "chapter2.html",
+    "href": "chapter2.html",
+    "title": "2  Commonly used probability models",
+    "section": "",
+    "text": "2.1 Poisson-Binomial relationship\nThe Poisson distribution plays a useful approximation role for the binomial: \\[\nX\\sim\\mathop{\\mathrm{Bin}}(n,p) \\ \\ \\Rightarrow \\ \\ X \\approx \\mathop{\\mathrm{Poi}}(np)\n\\] when \\(n\\) is large (\\(n&gt;20\\)) and \\(np\\) is small (\\(np&lt;5\\)). The reason is the Poisson can be seen as the limiting case to the binomial as \\(n\\to\\infty\\) while \\(\\mathop{\\mathrm{E}}(X)=np\\) remains fixed.\n\\[\\begin{align*}\n\\lim_{n\\to\\infty} \\operatorname{P}(X=x)\n&= \\lim_{n\\to\\infty} \\frac{n!}{x!(n-x)!}\\left(\\frac{\\lambda}{n} \\right)^x \\left(1 - \\frac{\\lambda}{n} \\right)^{n-x} \\\\\n&= \\frac{\\lambda^x}{x!} \\lim_{n\\to\\infty}\n{\\color{gray}\\underbrace{\\color{black}\\frac{n!}{n^x(n-x)!}}_{\\to 1}}\n\\,\n{\\color{gray}\\underbrace{\\color{black}\\left(1 - \\frac{\\lambda}{n} \\right)^n}_{\\to e^{-\\lambda}}}\n\\,\n{\\color{gray}\\underbrace{\\color{black}\\left(1 - \\frac{\\lambda}{n} \\right)^{-x}}_{\\to 1}} \\\\\n&=  \\frac{e^{-\\lambda}\\lambda^x}{x!} \\\\\n&= \\operatorname{P}(Y=x), Y\\sim\\mathop{\\mathrm{Poi}}(\\lambda).\n\\end{align*}\\]\nThe reason is that the Poisson can be seen as the limiting case to the binomial as \\(n\\to\\infty\\) while \\(\\mathop{\\mathrm{E}}(X)=np\\) remains fixed.\nCode\nlibrary(tidyverse)\npoibin_df &lt;- function(n, p, x = 0:10) {\n  lambda &lt;- n * p\n  the_title &lt;- paste0(\"n = \", n, \", p = \", p)\n  \n  tibble(\n    x = x,\n    bin = dbinom(x, size = n, prob = p),\n    poi = dpois(x, lambda = n * p)\n  ) %&gt;%\n    pivot_longer(-x) %&gt;%\n    mutate(title = the_title)\n}\n\nplot_df &lt;- bind_rows(\n  poibin_df(20, 0.05),\n  poibin_df(10, 0.3),\n  poibin_df(100, 0.3, 20:30),\n  poibin_df(1000, 0.01)\n) \nmylevels &lt;- unique(plot_df$title)\nplot_df$title &lt;- factor(plot_df$title, levels = mylevels)\n# levels(plot_df$title) &lt;- mylevels\n  \nggplot(plot_df, aes(x, value, fill = name)) +\n  geom_bar(stat = \"identity\", position = \"dodge\", alpha = 0.7) +\n  facet_wrap(. ~ title, ncol = 2, scales = \"free\") +\n  scale_x_continuous(breaks = 0:100) +\n  # scale_fill_manual(values = c(palgreen, palred)) +\n  labs(y = \"P(X=x)\", col = NULL, fill = NULL) +\n  theme(legend.position = \"top\")\n\n\n\n\n\n\n\n\nFigure 2.1",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Commonly used probability models</span>"
+    ]
+  },
+  {
+    "objectID": "chapter2.html#memoryless-property",
+    "href": "chapter2.html#memoryless-property",
+    "title": "2  Commonly used probability models",
+    "section": "2.2 Memoryless property",
+    "text": "2.2 Memoryless property\n\\(X\\) is a positive rv and memoryless, in the sense that for all \\(t&gt;s&gt;0\\), \\[\n\\operatorname{P}(X &gt; t+s \\mid X&gt;s) = \\operatorname{P}(X &gt; t)\n\\] if and only if it is exponentially distributed1.\n\nGiven that we have been waiting for \\(s\\) units of time, the probability that we wait a further \\(t\\) units of time is independent to the first fact!\n\n\nExample 2.1 Assume that bus waiting times are exponentially distributed, and you are concerned about the event \\(A=\\) a bus arrives in the next minute. Let \\(p_i = \\operatorname{P}(A|B_i)\\) where\n\n\\(B_1 =\\) you just arrived to the station; and\n\\(B_2 =\\) you’ve been sitting there for 20 minutes already.\n\nThen \\(p_1=p_2\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Commonly used probability models</span>"
+    ]
+  },
+  {
+    "objectID": "chapter2.html#relationships",
+    "href": "chapter2.html#relationships",
+    "title": "2  Commonly used probability models",
+    "section": "2.3 Relationships",
+    "text": "2.3 Relationships\n\n\n\n\n\n\nFigure 2.2: Relationships among various univariate distributions.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Commonly used probability models</span>"
+    ]
+  },
+  {
+    "objectID": "chapter2.html#footnotes",
+    "href": "chapter2.html#footnotes",
+    "title": "2  Commonly used probability models",
+    "section": "",
+    "text": "https://perplex.city/memorylessness-at-the-bus-stop-f2c97c59e420?gi=3602158da66b↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Commonly used probability models</span>"
+    ]
+  },
+  {
+    "objectID": "chapter3.html",
+    "href": "chapter3.html",
+    "title": "3  Sampling from the normal distribution",
+    "section": "",
+    "text": "3.1 An example\nA reasonable estimator for \\(1/\\lambda\\) is \\(T_n=\\min\\{X_1,\\dots,X_n\\}\\).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sampling from the normal distribution</span>"
+    ]
+  },
+  {
+    "objectID": "chapter3.html#an-example",
+    "href": "chapter3.html#an-example",
+    "title": "3  Sampling from the normal distribution",
+    "section": "",
+    "text": "Example 3.1 Consider the time to failure (in years) for circuit boards modelled by \\(\\mathop{\\mathrm{Exp}}(\\lambda)\\). An independent random sample \\(X_1,\\dots,X_n\\) was collected. What is the probability that the minimum time lasted is more than 2 years? \\[\\begin{align*}\n\\operatorname{P}(\\min\\{X_1,\\dots,X_n\\} &gt; 2)\n&=\\operatorname{P}(X_1 &gt; 2, \\dots, X_n &gt; 2) \\\\\n&=\\operatorname{P}(X_1&gt;2)\\cdots\\operatorname{P}(X_n&gt;2)\\\\\n&= \\left[\\operatorname{P}(X_1 &gt; 2)\\right]^n \\\\\n&= [e^{-2/\\lambda}]^n \\\\\n&= e^{-2n/\\lambda}\n\\end{align*}\\]",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sampling from the normal distribution</span>"
+    ]
+  },
+  {
+    "objectID": "chapter3.html#finite-vs-inifinite-population",
+    "href": "chapter3.html#finite-vs-inifinite-population",
+    "title": "3  Sampling from the normal distribution",
+    "section": "3.2 Finite vs inifinite population",
+    "text": "3.2 Finite vs inifinite population\nInfinite population\nImplicitly iid: “Removing” \\(X_1=x_1\\) from the population does not affect the probability distribution for the subsequent samples. Why “infinite”? In scenarios where the exact population size is either unknown, uncountable, or effectively limitless, it is simpler to treat it as infinite.\nFinite population\nNot necessarily iid, depending on the sampling method:\n\nSampling without replacement\nCluster sampling\nStratified sampling\netc.\n\nStandard errors calculations are affected here. Check out Finite Population Correction factors if interested.\n\nExample 3.2 Estimate the average height of goalkeepers. Which ones? Presumably all of them–past, present, and future–in all leagues. For all intents and purposes, this is an infinite population.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sampling from the normal distribution</span>"
+    ]
+  },
+  {
+    "objectID": "chapter3.html#an-experiment",
+    "href": "chapter3.html#an-experiment",
+    "title": "3  Sampling from the normal distribution",
+    "section": "3.3 An experiment",
+    "text": "3.3 An experiment\nUsing R, we can draw multiple instances of the statistic \\(T_n\\). Let \\(n=25\\) and \\(p=0.6\\) (true value).\n\nDraw \\(X_1,\\dots,X_n\\,\\overset{\\text{iid}}{\\sim}\\,\\mathop{\\mathrm{Bern}}(p)\\)\nCompute \\(T_n = \\sum_{i=1}^n X_i\\)\nRepeat steps 1–2 a total of \\(B=10000\\) times\n\n\n\nCode\nn &lt;- 25\np &lt;- 0.6\nB &lt;- 10000\nx &lt;- rbinom(B, n, p)\n\n# First 10 values\nhead(x, 10)\n\n\n [1] 15 16 15 16 17 17 14 12 19 18\n\n\nCode\nggplot() +\n  geom_histogram(aes(x), fill = \"gray30\", col = \"white\", \n                 breaks = seq(-0.5, n + 0.5, by = 1)) +\n  scale_x_continuous(breaks = seq(0, n, by = 5)) +\n  labs(x = expression(T[n]), y = \"Frequency\")",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Sampling from the normal distribution</span>"
+    ]
+  },
+  {
+    "objectID": "chapter4.html",
+    "href": "chapter4.html",
+    "title": "4  Large sample approximations",
+    "section": "",
+    "text": "4.1 Illustration of convergence in probability\nWhile there is no guarantee that the points will eventually stay inside the \\(\\epsilon\\)-band, the probability of it being outside the band tends to 0.\nCode\nset.seed(123)\neps &lt;- 0.15\nplot_df &lt;- tibble(\n  x = 1:25,\n  y = 1 / x ^ {1/1.2} + rnorm(25, sd = 0.1)) %&gt;%\n  mutate(\n    y = case_when(y &gt; 0.45 & x &gt; 2 ~ 0.45, TRUE ~ y),\n    up = y +  8.5 * eps / (x ^ 1),\n    lo = y -  8.5 * eps / (x ^ 1),\n    dist = up - lo,\n    longer = dist &gt; (2 * eps)\n  )  %&gt;%\n  filter(x &gt; 2) \n\nggplot(plot_df, aes(x, y, col = longer)) +\n  geom_hline(yintercept = 0, linetype = \"dashed\", col = \"grey60\") +\n  geom_hline(yintercept = c(eps, -eps), col = \"gray\") +\n  annotate(\"rect\", xmax = Inf, xmin = -Inf, ymax = eps, ymin = -eps, alpha = 0.1) +\n  geom_point() + \n  geom_errorbar(aes(ymin = lo, ymax = up), width = 0.4) +\n  coord_cartesian(ylim = c(-0.3, 0.6), xlim = c(3, 25)) +\n  scale_y_continuous(breaks = c(-eps, 0, eps), \n                     labels = c(expression(X - epsilon), \"X\", \n                                expression(X + epsilon))) +\n  scale_colour_brewer(palette = \"Set1\") +\n  labs(y = expression(X[n]), x = \"n\") +\n  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +\n  guides(col = \"none\") +\n  geom_errorbar(aes(x = 2.05, y = 0, ymax = 0.05, ymin = -0.05), col = \"black\", \n                width = 0.4, linewidth = 1)\n\n\n\n\n\n\n\n\nFigure 4.1",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large sample approximations</span>"
+    ]
+  },
+  {
+    "objectID": "chapter4.html#almost-sure-convergence",
+    "href": "chapter4.html#almost-sure-convergence",
+    "title": "4  Large sample approximations",
+    "section": "4.2 Almost sure convergence",
+    "text": "4.2 Almost sure convergence\n\nDefinition 4.1 (Almost sure convergence) \\(X_n\\) converges to \\(X\\) in almost surely if for every \\(\\epsilon&gt;0\\), \\[\n\\operatorname{P}\\left(\\lim_{n\\to\\infty} |X_n-X|\\geq\\epsilon \\right) = 0.  \n%\\ \\Leftrightarrow \\ \\Pr\\left(\\lim_{n\\to\\infty} |X_n-X| &lt; \\epsilon \\right) = 1.\n\\] We write \\(X_n\\xrightarrow{\\text{a.s.}}X\\).\n\nThat is, \\(X_n(\\omega)\\to X(\\omega)\\) for all outcomes \\(\\omega \\in \\Omega\\), except perhaps for a collection of outcomes \\(\\omega \\in A\\) with \\(\\operatorname{P}(A) = 0\\). This is stronger than (i.e. it implies, but is not implied by) convergence in probability. There is no relationship between convergence in mean square and convergence almost surely.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large sample approximations</span>"
+    ]
+  },
+  {
+    "objectID": "chapter4.html#the-strong-law-of-large-numbers",
+    "href": "chapter4.html#the-strong-law-of-large-numbers",
+    "title": "4  Large sample approximations",
+    "section": "4.3 The Strong Law of Large Numbers",
+    "text": "4.3 The Strong Law of Large Numbers\nWith the same setup as for WLLN, a different argument leads to the stronger conclusion as per the result below.\n\nTheorem 4.1 (Strong Law of Large Numbers) Let \\(X_1,X_2,\\dots\\) be iid rvs with mean \\(\\mu\\) and variance \\(\\sigma^2\\). Let \\(\\bar X_n\\) denote the sample mean, i.e.  \\[\n\\bar X_n = \\frac{1}{n}\\sum_{i=1}^n X_i.\n\\] Then, \\(\\bar X_n{\\xrightarrow{\\text{a.s.}}} \\mu\\) as \\(n\\to\\infty\\), i.e. \\[\n\\operatorname{P}\\left(\\lim_{n\\to\\infty} |\\bar X_n-\\mu| &lt; \\epsilon \\right) = 1.\n\\]\n\nProof is outside the scope of this module. It’s satisfying to know that the SLLN exists, but for our purposes, WLLN suffices!",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Large sample approximations</span>"
+    ]
+  },
+  {
+    "objectID": "chapter5.html",
+    "href": "chapter5.html",
+    "title": "5  Likelihood theory",
+    "section": "",
+    "text": "5.1 Finding the MLE numerically\nHere’s how we simulation \\(n=100\\) random sample from a normal distribution with mean \\(\\mu=8\\) and \\(\\sigma=1\\).\nCode\nX &lt;- rnorm(n = 100, mean = 8)\nmean(X) \n\n\n[1] 7.815464\nThe mean is found to be 7.82. Here’s a plot of the log-likelihood function (\\(\\mu\\) against \\(\\ell(\\mu)\\)):\nCode\ntibble(\n  x = mean(X) + seq(-1, 1, length = 100)\n) |&gt;\n  rowwise() |&gt;\n  mutate(y = sum(dnorm(X, mean = x, log = TRUE))) |&gt;\n  ggplot(aes(x, y)) +\n  geom_line() +\n  geom_segment(linetype = \"dashed\", x = mean(X), xend = mean(X), y = -Inf,\n               yend = sum(dnorm(unlist(X), mean = mean(X), log = TRUE)),\n               size = 0.4, col = \"gray\") +\n  labs(x = expression(mu), y = expression(l(mu)))\n\n\n\n\n\n\n\n\nFigure 5.1: Log-likelihood function of the normal mean.\nHere’s how to optimise the (log-)likelihood function.\nneg_loglik &lt;- function(theta, data = X) {\n  -1 * sum(dnorm(x = data, mean = theta, log = TRUE))\n}\n\nres &lt;- nlminb(\n  start = 1,  # starting value\n  objective = neg_loglik, \n  control = list(\n    trace = 1  # trace the progress of the optimiser\n  ))\n\n  0:     2456.8965:  1.00000\n  1:     530.71068:  5.00000\n  2:     134.36867:  7.81548\n  3:     134.36867:  7.81547\n  4:     134.36867:  7.81546\n\nglimpse(res)\n\nList of 6\n $ par        : num 7.82\n $ objective  : num 134\n $ convergence: int 0\n $ iterations : int 4\n $ evaluations: Named int [1:2] 6 7\n  ..- attr(*, \"names\")= chr [1:2] \"function\" \"gradient\"\n $ message    : chr \"relative convergence (4)\"",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Likelihood theory</span>"
+    ]
+  },
+  {
+    "objectID": "chapter5.html#variance-reduction-rao-blackwellisation",
+    "href": "chapter5.html#variance-reduction-rao-blackwellisation",
+    "title": "5  Likelihood theory",
+    "section": "5.2 Variance reduction: Rao-Blackwellisation",
+    "text": "5.2 Variance reduction: Rao-Blackwellisation\nIt is possible to reduce the variance of an unbiased estimator by conditioning on a sufficient statistic.\n\nTheorem 5.1 (Rao-Blackwell) Suppose that \\(\\hat\\theta({\\mathbf X})\\) is unbiased for \\(\\theta\\), and \\(S({\\mathbf X})\\) is sufficient for \\(\\theta\\). Then the function of \\(S\\) defined by \\[\n\\phi(S) = \\mathop{\\mathrm{E}}_\\theta(\\hat\\theta|S)\n\\]\n\nis a statistic, i.e. \\(\\phi(S)\\) does not involve \\(\\theta\\);\nis an unbiased statistic, i.e. \\(\\mathop{\\mathrm{E}}(\\phi(S)) = \\theta\\); and\nhas \\(\\mathop{\\mathrm{Var}}_\\theta(\\phi(S)) \\leq \\mathop{\\mathrm{Var}}_\\theta (\\hat\\theta)\\), with equality iff \\(\\hat\\theta\\) itself is a function of \\(S\\).\n\n\nIn other words, \\(\\phi(S)\\) is a uniformly unbiased estimator for \\(\\theta\\). Thus the Rao-Blackwell theorem provides a systematic method of variance reduction for an estimator that is not a function of the sufficient statistic.\n\nProof. \n\nSince \\(S\\) is sufficient, the distribution of \\({\\mathbf X}\\) given \\(S\\) does not involve \\(\\theta\\), and hence \\(\\mathop{\\mathrm{E}}_\\theta(\\hat\\theta({\\mathbf X})|S)\\) does not involve \\(\\theta\\).\n\\(\\mathop{\\mathrm{E}}(\\phi(S)) = \\mathop{\\mathrm{E}}\\left[ \\mathop{\\mathrm{E}}(\\hat\\theta|S) \\right] = \\mathop{\\mathrm{E}}(\\hat\\theta) = \\theta\\).\nUsing the law of total variance, \\[\\begin{align*}\n\\mathop{\\mathrm{Var}}(\\hat\\theta)\n&= \\mathop{\\mathrm{E}}\\left[ \\mathop{\\mathrm{Var}}(\\hat\\theta|S) \\right] + \\mathop{\\mathrm{Var}}\\left[ \\mathop{\\mathrm{E}}(\\hat\\theta|S) \\right] \\\\\n&= \\mathop{\\mathrm{E}}\\left[ \\mathop{\\mathrm{Var}}(\\hat\\theta|S) \\right] + \\mathop{\\mathrm{Var}}(\\phi(S)) \\\\\n&\\geq \\mathop{\\mathrm{Var}}(\\phi(S)),\n\\end{align*}\\] with equality iff \\(\\mathop{\\mathrm{Var}}(\\hat\\theta|S) =0\\), i.e. iff \\(\\hat\\theta\\) is a function of \\(S\\).\n\n\n\nExample 5.1 Suppose we have data \\(X_1,\\dots,X_n\\,\\overset{\\text{iid}}{\\sim}\\,\\mathop{\\mathrm{Poi}}(\\lambda)\\) pertaining to the number of road accidents per day, and we want to estimate the probability of having no accidents \\(\\theta = e^{-\\lambda}=\\operatorname{P}(X_i=0)\\).\nAn unbiased estimator of \\(\\theta\\) is \\[\n\\hat\\theta({\\mathbf X}) = \\begin{cases}\n1 & X_1 =0 \\\\\n0 & \\text{otherwise,}\n\\end{cases}\n\\] as \\(\\mathop{\\mathrm{E}}\\hat\\theta({\\mathbf X}) = 1\\cdot\\operatorname{P}(X_1=0)=e^{-\\lambda}=\\theta\\). But this is likely to be a poor estimator, since it ignores the rest of the sample \\(X_2,X_3,\\dots,X_n\\).\nWe can see that \\(S({\\mathbf X})=\\sum_{i=1}^n X_i\\) is sufficient since the joint pdf can be expressed as \\[\nf({\\mathbf x}|\\lambda) = \\frac{1}{x_1!\\cdots x_n!} \\cdot e^{-n\\lambda}\\lambda^{\\sum_{i=1}^nx_i}.\n\\]\nNow apply the Rao-Blackwell theorem: \\[\\begin{align*}\n\\phi(S) = \\mathop{\\mathrm{E}}(\\hat\\theta|S) = \\mathop{\\mathrm{E}}\\Big(\\hat\\theta \\, \\Big| \\, \\sum_{i=1}^n X_i = S  \\Big)\n&= \\operatorname{P}\\Big(X_1=0  \\, \\Big| \\, \\sum_{i=1}^n X_i = S  \\Big)\\\\\n&= \\left(1 - \\frac{1}{n} \\right)^S,\n\\end{align*}\\] where the conditional probability in the last step comes from the Poisson-binomial relationship (Refer Ex. Sheet 2: Suppose \\(X_i\\,\\overset{\\text{iid}}{\\sim}\\,\\mathop{\\mathrm{Poi}}(\\lambda_i)\\), then \\(X_1\\big|(\\sum_{i=1}^nX_i=m)\\sim\\mathop{\\mathrm{Bin}}(m,\\pi)\\), where \\(\\pi=\\lambda_1/\\sum_{i=1}^n \\lambda_i\\)).\nBy the Rao-Blackwell theorem, \\(\\mathop{\\mathrm{Var}}(\\phi)&lt;\\mathop{\\mathrm{Var}}(\\hat\\theta({\\mathbf X}))\\) (strict inequality since \\(\\hat\\theta({\\mathbf X})\\) is not a function of \\(S\\)), so prefer \\(\\phi(S)\\) over \\(\\hat\\theta({\\mathbf X})\\) as an estimator.\n\n\nCode\nlambda &lt;- 2\nn &lt;- 25\n(theta &lt;- dpois(x = 0, lambda = lambda))\n\n\n[1] 0.1353353\n\n\nCode\nB &lt;- 1000\nX &lt;- matrix(rpois(n * B, lambda = lambda), ncol = B)\ntheta_hat &lt;- apply(X, 2, function(x) as.numeric(x[1] == 0))\nphi_hat &lt;- apply(X, 2, function(x) (1-1/n)^(sum(x)))\n\ntibble(theta_hat, phi_hat) %&gt;%\n  pivot_longer(everything(), names_to = \"Estimator\", values_to = \"theta_hat\") %&gt;%\n  ggplot() +\n  geom_density(aes(theta_hat, col = Estimator, fill = Estimator), alpha = 0.6) +\n  # # geom_vline(xintercept = theta, linetype = \"dashed\") +\n  # geom_vline(data = tibble(\n  #   x = c(mean(MLE), mean(MOM)),\n  #   Estimator = c(\"MLE\", \"MOM\")\n  # ), aes(xintercept = x), linetype = \"dashed\") +\n  facet_grid(. ~ Estimator) +\n  # labs(x = expression(hat(theta)), y = expression(f~(hat(theta)))) +\n  # scale_x_continuous(breaks = seq(2, 14, by = 2)) +\n  theme(legend.position = \"none\")\n  # geom_text(data = tibble(x = c(4.9, 5.85), y = c(0.45, 0.45),\n  #                         Estimator = c(\"MLE\", \"MOM\"),\n  #                         label = c(\"E(hat(theta)[ML])\", \"E(hat(theta)[MOM])\")),\n  #           aes(x, y, label = label), parse = TRUE)\n\n\n\n\n\n\n\n\nFigure 5.2\n\n\n\n\n\nBut is \\(\\phi(S)=(1-1/n)^S\\) unbiased? This is guaranteed by the RB theorem. Check: Since \\(S=\\sum_{i=1}^n X_i \\sim\\mathop{\\mathrm{Poi}}(n\\lambda)\\), we get \\[\\begin{align*}\n\\mathop{\\mathrm{E}}(\\phi(S)) &= \\sum_{s=0}^\\infty \\left(1 - \\frac{1}{n} \\right)^s  \\frac{e^{-n\\lambda}(n\\lambda)^s}{s!}\\times e^{-\\lambda}e^{\\lambda} \\\\\n&= e^{-\\lambda} \\sum_{s=0}^\\infty {\\color{gray}\\underbrace{\\color{black}\\frac{e^{-\\lambda(n-1)}[\\lambda(n-1)]^s}{s!}}_{\\text{pmf of }\\mathop{\\mathrm{Poi}}(\\lambda(n-1))}} = e^{-\\lambda}.\n\\end{align*}\\] A similar calculation can give us the variance of this estimator.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Likelihood theory</span>"
+    ]
+  },
+  {
+    "objectID": "chapter5.html#continuity",
+    "href": "chapter5.html#continuity",
+    "title": "5  Likelihood theory",
+    "section": "5.3 Continuity",
+    "text": "5.3 Continuity\nA continuous function \\(\\psi(x)\\) is a function such that a continuous variation of \\(x\\) induces a continuous variation of \\(\\psi(x)\\)–i.e. no jumps allowed. \\(\\psi\\) is continuous at \\(c\\) if \\(\\forall \\epsilon &gt; 0\\), \\(\\exists \\delta &gt; 0\\) s.t. \\(|x-c| &lt; \\delta \\Rightarrow |\\psi(x)-\\psi(c)| &lt; \\epsilon\\).\n\n\nCode\ntibble(\n  x = seq(1, 3, length = 1000),\n  y = 16 - x^2\n) -&gt; plot_df\n\nmycols &lt;- grDevices::palette.colors(3, palette = \"Set1\")\n\nggplot() +\n  annotate(\"rect\", xmin = 2 - 0.25, xmax = 2 + 0.25, ymin = -Inf, ymax = Inf, \n           fill = mycols[1], alpha = 0.3) +\n  annotate(\"rect\", xmin = -Inf, xmax = Inf, ymin = 12 - 2, ymax = 12 + 2, \n           fill = mycols[2], alpha = 0.3)  +\n  geom_line(data = plot_df, aes(x, y)) +\n  geom_line(data = plot_df %&gt;% filter(x &gt;= 2 - 0.25, x &lt;= 2 + 0.25), aes(x, y),\n            col = mycols[3], linewidth = 2) +  \n  # geom_segment(aes(x = 2, xend = 2, y = 12, yend = -Inf), linetype = \"dashed\",\n  #              size = 0.4) \n  geom_hline(yintercept = 12, linetype = \"dashed\") +\n  geom_vline(xintercept = 2, linetype = \"dashed\") +\n  scale_x_continuous(breaks = 2 + c(-0.25, 0, 0.25), \n                     labels = c(expression(\"c-\"*delta),\n                                \"c\",\n                                expression(\"c+\"*delta))) +\n  scale_y_continuous(breaks = 12 + c(-2, 0, 2), \n                     labels = c(expression(\"f(c)-\"*epsilon),\n                                \"f(c)\",\n                                expression(\"f(c)+\"*epsilon)))  \n\n\n\n\n\n\n\n\nFigure 5.3",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Likelihood theory</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html",
+    "href": "chapter6.html",
+    "title": "6  Hypothesis testing",
+    "section": "",
+    "text": "6.1 A fuzzy and cute example\nOn a farm there are 499 white bunnies, and 1 brown bunny. One of the bunnies ravaged through the carrot farm, leaving the farmer furious.\nAssume colour difference is not associated with behavioural differences in rabbits. If we believe that a white rabbit indeed was at fault, the error rate is 1/500 = 0.2%.\nSuppose there was a witness that claimed the brown rabbit did it. The witness performed a colour identification test, reporting the right colour 95% of the time. Given the evidence, the probability that a brown rabbit was at fault is\n\\[\\begin{align*}\n\\operatorname{P}(B\\mid E)\n&= \\frac{\\operatorname{P}(E \\mid B) \\operatorname{P}(B)}{\\operatorname{P}(E \\mid B) \\operatorname{P}(B) + \\operatorname{P}(E \\mid B^c) \\operatorname{P}(B^c)} \\\\\n&= \\frac{0.95 \\times 0.002}{0.95 \\times 0.002 + 0.05 \\times 0.998} \\\\\n&\\approx 3.6\\%\n\\end{align*}\\]\ngiving an error rate of 96.4%!",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html#a-fuzzy-and-cute-example",
+    "href": "chapter6.html#a-fuzzy-and-cute-example",
+    "title": "6  Hypothesis testing",
+    "section": "",
+    "text": "Figure 6.1\n\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nCan we say that we know, or reasonably believe with confidence, that it was a white bunny that caused the problem? What’s your proof?1",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html#fisherian-view",
+    "href": "chapter6.html#fisherian-view",
+    "title": "6  Hypothesis testing",
+    "section": "6.2 Fisherian view",
+    "text": "6.2 Fisherian view\nThe \\(p\\)-value is interpreted as a continuous measure of evidence some null hypothesis–there is no point at which the results become ‘significant’.\n\n\n\n\n\n\nRemark\n\n\n\nStatistical evidence differs from direct evidence (e.g. having CCTV recording in the house). We may never know what exactly happened. The best we can do is to base decisions based on the likelihood of the evidence materialising.\n\n\n\n\n\n\n\n\nFigure 6.2: Credits: https://xkcd.com/892/.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html#uniformity-of-p-values",
+    "href": "chapter6.html#uniformity-of-p-values",
+    "title": "6  Hypothesis testing",
+    "section": "6.3 Uniformity of \\(p\\)-values",
+    "text": "6.3 Uniformity of \\(p\\)-values\n\n\n\n\n\n\nQuestion\n\n\n\nSince \\(p({\\mathbf X})\\) is a statistic, it is a rv. What is its distribution?\n\n\n\nTheorem 6.1 (Uniformity of \\(p\\)-values) If \\(\\theta_0\\) is a point null hypothesis for the parameter of continuous \\({\\mathbf X}\\), then a correctly calculated \\(p\\)-value \\(p_T({\\mathbf X})\\) based on any test statistic \\(W\\), is such that \\[\np_T({\\mathbf X}) \\sim \\mathop{\\mathrm{Unif}}(0,1)\n\\] in repeated sampling under \\(H_0\\).\n\n\nProof. This is a consequence of the : Suppose that a continuous rv \\(T\\) has cdf \\(F_T(t), \\forall t\\). Then the rv \\(Y=F_T(T)\\sim\\mathop{\\mathrm{Unif}}(0,1)\\) because: \\[\nF_Y(y)=\\operatorname{P}( {\\color{gray}\\overbrace{\\color{black}F_T(T)}^{Y}}\\leq y) = \\operatorname{P}\\big(T \\leq F^{-1}_T(y)\\big) = F_T\\left(F^{-1}_T(y) \\right) = y,\n\\] which is the cdf of a \\(\\mathop{\\mathrm{Unif}}(0,1)\\) distribution.\nNow for any data \\({\\mathbf x}\\), \\[\np_T({\\mathbf x}) =  \\operatorname{P}\\!{}_{\\theta_0}\\left(T({\\mathbf X}) \\geq T({\\mathbf x}) \\right) = 1 - F\\big( T({\\mathbf x}) \\big),\n\\] where \\(F\\) is the cdf (under \\(H_0\\)) of \\(T({\\mathbf X})\\). Hence, \\(p_T({\\mathbf x})=1-Y\\) where \\(Y\\sim\\mathop{\\mathrm{Unif}}(0,1)\\) by the probability integral transform. But clearly if \\(Y\\sim\\mathop{\\mathrm{Unif}}(0,1)\\), then so is \\(1-Y\\).\n\nThis result is useful especially for checking the validity of a complicated \\(p\\)-value calculation:\n\nSimulate several new data sets from the null distribution.\nFor each simulated data set, apply the \\(p\\)-value calculation.\nAssess the collection of resulting \\(p\\)-values–do they seem to be uniformly distributed?\n\nSuppose we are testing \\(H_0:\\mu=0\\) on a random sample of \\(X_1,\\dots,X_n\\) assumed to be normally distributed with mean \\(\\mu\\) and variance \\(\\sigma^2=4.3^2\\). Let’s do this experiment:\n\nDraw \\(X_1,\\dots,X_{10}\\,\\overset{\\text{iid}}{\\sim}\\,\\mathop{\\mathrm{N}}(0,4.3^2)\\) (the distribution under \\(H_0\\))\nCompute the \\(p\\)-value \\(p({\\mathbf x})\\) based on the simulated data\nRepeat 1–2 a total of \\(B=100000\\) times to get \\(p_1,\\dots,p_B \\in (0,1)\\)\n\nPlotting a histogram of the simulated \\(p\\)-values yields:\n\n\nCode\nn &lt;- 10\nsigma &lt;- 4.3\nB &lt;- 100000\nres &lt;- rep(NA, B)\nfor (i in 1:B) {\n  x &lt;- rnorm(n, sd = sigma)\n  res[i] &lt;- 2 * (pnorm((sqrt(n) * abs(mean(x)) / sigma), lower.tail = FALSE))\n}\nggplot() + \n  geom_histogram(aes(res, ..density..), breaks = seq(0, 1, by = 0.05),\n                 col = \"white\") +\n  geom_hline(yintercept = 1, linetype = \"dashed\") +\n  scale_y_continuous(breaks = seq(0, 1, by = 0.25)) +\n  scale_x_continuous(breaks = seq(0, 1, by = 0.1)) +\n  labs(x = \"p\", y = \"Density\")\n\n\n\n\n\n\n\n\nFigure 6.3\n\n\n\n\n\nWhy is this? Assume that \\(H_0\\) is true. In the Neyman-Pearson approach, \\(\\alpha\\) is the rate of false positives, i.e. the rate at which the null hypothesis is rejected given that \\(H_0\\) is true. This rate is fixed. On the other hand, \\(p=p({\\mathbf X})\\) is a random variable.\nFor any value \\(\\alpha\\), the null is rejected when the observed \\(p &lt; \\alpha\\). This happens, by definition, with probability \\(\\alpha\\)! The only way that this happens is when the \\(p\\)-value comes from a uniform distribution, since \\(\\operatorname{P}(U \\leq u) = u\\). I.e., under the null\n\n\\(p\\) has a 5% chance of being less than \\(\\alpha=0.05\\);\n\\(p\\) has a 10% chance of being less than \\(\\alpha=0.1\\);\netc.\n\nSo, as a consequence, if \\(H_0\\) is false, then (hopefully) the \\(p\\)-values are biased towards 0.\nSee http://varianceexplained.org/statistics/interpreting-pvalue-histogram/.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html#one-sided-tests",
+    "href": "chapter6.html#one-sided-tests",
+    "title": "6  Hypothesis testing",
+    "section": "6.4 One-sided tests",
+    "text": "6.4 One-sided tests\nAll of the tests thus far are called two-sided tests. Sometimes we wish to measure the evidence (against \\(H_0\\)) in one direction only.\n\nExample 6.1 Suppose \\(X_1,\\dots,X_n\\,\\overset{\\text{iid}}{\\sim}\\,\\mathop{\\mathrm{N}}(\\mu,\\sigma^2)\\) with \\(\\sigma^2\\) known. Consider testing \\(H_0: \\mu \\leq 0\\).  The unrestricted MLE remains \\(\\hat\\mu = \\bar X\\), but the restricted MLE under \\(H_0\\) is a bit tricky. With a little bit of reasoning, \\[\n\\tilde\\mu=\\begin{cases}\n\\bar X & \\bar X \\leq 0 \\\\\n0 & \\bar X &gt; 0\n\\end{cases}\n\\]\n\n\nCode\nset.seed(123)\nn &lt;- 10\nsigma &lt;- 4.3\ntibble(\n  mu = seq(-6, -2, length = 100),\n  ll = dnorm(-4, mean = mu, sd = sigma, log = TRUE)\n) %&gt;%\n  mutate() %&gt;%\n  ggplot() +\n  annotate(\"rect\", xmin = -Inf,  xmax = 0, ymin = -Inf, ymax = Inf,\n            alpha = 0.2) +\n  geom_line(aes(mu, ll, col = \"a\")) +\n  geom_line(aes(mu + 5, ll, col = \"b\")) +\n  geom_vline(xintercept = 0, linetype = \"dashed\") +\n\n  scale_y_continuous(breaks = NULL, name = expression(log~L(mu))) +\n  scale_x_continuous(breaks = 0, name = expression(mu)) +\n  guides(col = \"none\") \n\n\n\n\n\n\n\n\nFigure 6.4\n\n\n\n\n\nTherefore, the log LR statistic depends on the value of \\(\\bar X\\): \\[\n\\log W_{LR} = \\ell(\\hat\\mu|{\\mathbf X}) - \\ell(\\tilde \\mu|{\\mathbf X}) = \\begin{cases}\n0 & \\bar X \\leq 0 \\\\\n\\frac{n\\bar X^2}{2\\sigma^2} & \\bar X &gt; 0\n\\end{cases}\n\\] (the second case when \\(\\bar X&gt;0\\) is as before). The \\(p\\)-value from data \\({\\mathbf x}\\), using the monotonicity of \\(\\bar X\\) in the LRT statistic, is \\[\np({\\mathbf x}) = \\begin{cases}\n1 &\\bar x \\leq 0 \\\\\n\\operatorname{P}(\\bar X &gt; \\bar x) = 1-\\Phi(\\sqrt n \\bar x / \\sigma) &\\bar x &gt; 0\n\\end{cases}\n\\] Hence, relative to the ‘two-sided’ test that we saw previously, the \\(p\\)-value is halved if \\(\\bar x &gt; 0\\), and ignores the precise value of \\(\\bar x\\) if \\(\\bar x \\leq 0\\).\n\nFurther remarks:\n\nPerforming a one-sided test instead of a two-sided test thus makes any apparent evidence against \\(H_0\\) seem stronger (since the \\(p\\)-value is halved).\nIn practice there are rather few situations where performing a one-sided test, which assumes that we know in advance that departures from \\(H_0\\) are in one direction only, can be justified. When assessing the effect of a new drug, for example, the convention is to assess evidence for an effect in either direction, positive or negative.\nThe two-sided test is said to be more conservative than the one-sided test: The one-sided test risks over-stating the strength of evidence against \\(H_0\\) if the underlying assumption–that evidence against \\(H_0\\) counts in one direction only–is actually false.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html#failing-to-reject-the-null-hypothesis",
+    "href": "chapter6.html#failing-to-reject-the-null-hypothesis",
+    "title": "6  Hypothesis testing",
+    "section": "6.5 “Failing to reject the null hypothesis”",
+    "text": "6.5 “Failing to reject the null hypothesis”\n\nAbsence of proof is not proof of absence. You are not able prove a negative.\n\n\nAustralian Tree Lobsters were assumed to be extinct. There was no evidence that any were still living because no one had seen them for decades. Yet in 1960, scientists observed them.\nIn criminal trial, we start with the assumption that the defendant is innocent until proven guilty. If the prosecutor fails to meet a an evidentiary standard, it does not mean the defendant is innocent.\n\n\n\n\n\n\n\nAccepting the null hypothesis\n\n\n\nAccepting the null hypothesis indicates that you have proven that an effect does not exist. Maybe, this is what you mean?2",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html#asymptotic-distribution-of-lrt-an-experiment",
+    "href": "chapter6.html#asymptotic-distribution-of-lrt-an-experiment",
+    "title": "6  Hypothesis testing",
+    "section": "6.6 Asymptotic distribution of LRT: An experiment",
+    "text": "6.6 Asymptotic distribution of LRT: An experiment\nLet’s try to “verify” the distribution of the test statistic \\(2\\log \\lambda({\\mathbf X})\\).\n\nDraw \\(X_1,\\dots,X_{10}\\sim\\mathop{\\mathrm{N}}(8,1)\\)\nCompute \\(T({\\mathbf X}) = 2\\log \\lambda({\\mathbf X}) = \\sum_{i=1}^n (X_i-\\bar X)^2\\)\nRepeat steps 1–2 \\(B=10000\\) number of times to get \\(T_1,\\dots,T_B\\)\n\nWe can plot the histogram of the observed test statistic, and overlay a \\(\\chi_9^2\\) density over it. As can be seen, it is a good fit.\n\n\nCode\nB &lt;- 10000\nres &lt;- rep(NA, B)\nfor (i in 1:B) {\n  X &lt;- rnorm(10, mean = 8)\n  res[i] &lt;- sum((X - mean(X)) ^ 2)\n}\nggplot() +\n  geom_histogram(aes(x = res, y = ..density..), col = \"white\") +\n  geom_line(data = tibble(x = seq(0, 35, length = 100),\n                          y = dchisq(x, 10 - 1)),\n            aes(x, y), col = \"red3\", size = 1) +\n  scale_y_continuous(breaks = NULL) +\n  labs(x = expression(2~log~lambda(X)), y = \"Density\")\n\n\n\n\n\n\n\n\nFigure 6.5\n\n\n\n\n\nActually, in this particular case, the distribution of \\(2\\log\\lambda({\\mathbf X})\\) is exact. Note that \\[\n2 \\log \\lambda({\\mathbf X}) = \\frac{n-1}{n-1} \\sum_{i=1}^n (X_i-\\bar X)^2 = (n-1)S^2\n\\] which is the sample variance. We’ve seen previously that \\[\n\\frac{(n-1)S^2}{\\sigma^2} \\sim\\chi^2_{n-1}.\n\\] Thus, \\(2\\log \\lambda({\\mathbf X})\\) is merely a scaled \\(\\chi^2\\) distribution (but in this case \\(\\sigma^2=1\\)).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter6.html#footnotes",
+    "href": "chapter6.html#footnotes",
+    "title": "6  Hypothesis testing",
+    "section": "",
+    "text": "Example adapted from Schoeman, F. (1987). Statistical vs. direct evidence. Noûs, 179-198.↩︎\nhttps://statisticsbyjim.com/hypothesis-testing/failing-reject-null-hypothesis/↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Hypothesis testing</span>"
+    ]
+  },
+  {
+    "objectID": "chapter7.html",
+    "href": "chapter7.html",
+    "title": "7  Interval estimation",
+    "section": "",
+    "text": "Add your notes here.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Interval estimation</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Casella, G., & Berger, R. L. (2002). Statistical inference (2nd ed.). Duxbury.\n\n\nDeGroot, M. H., & Schervish, M. J. (2012). Probability and statistics. Addison-Wesley.\n\n\nPawitan, Y. (2001). In all likelihood. Statistical modelling and inference using likelihood. Oxford University Press.\n\n\nRoss, S. M. (2019). A first course in probability. Pearson Boston.\n\n\nWasserman, L. (2004). All of statistics: A concise course in statistical inference. Springer-Verlag. https://doi.org/10.1007/978-0-387-21736-9",
+    "crumbs": [
+      "References"
+    ]
+  }
+]

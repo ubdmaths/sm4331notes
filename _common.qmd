@@ -1,0 +1,19 @@
+```{r}
+#| echo: false
+#| message: false
+#| results: asis
+#| eval: !expr knitr::is_html_output()
+
+# LaTeX shortcuts 
+cat(readr::read_file("maths_shortcuts.tex"))
+``` 
+
+```{r}
+#| label: setup
+#| include: false
+
+# R libraries
+library(tidyverse)
+theme_set(theme_bw())
+```
+

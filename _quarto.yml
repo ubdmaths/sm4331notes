@@ -1,0 +1,60 @@
+project:
+  type: book
+  output-dir: _book
+
+date-modified: last-modified
+
+book:
+  title: "SM-4331 Advanced Statistics"
+  author: 
+    - Haziq Jamil
+    - SM-4331 Students :)
+  reader-mode: true
+  search: true
+  # page-footer:
+  #   left: |
+  #     R for Data Science (2e) was written by Hadley Wickham, Mine
+  #     Çetinkaya-Rundel, and Garrett Grolemund.
+  #   right: |
+  #     This book was built with <a href="https://quarto.org/">Quarto</a>.
+  # cover-image: cover.jpg
+  # favicon: cover.jpg
+  # site-url: https://r4ds.hadley.nz/
+  # repo-url: https://github.com/hadley/r4ds/
+  # repo-branch: main
+  # repo-actions: [edit, issue]
+  
+  downloads: [pdf, docx, epub]
+  chapters:
+    - index.qmd
+    - chapter1.qmd
+    - chapter2.qmd
+    - chapter3.qmd
+    - chapter4.qmd
+    - chapter5.qmd
+    - chapter6.qmd
+    - chapter7.qmd
+    - references.qmd
+
+bibliography: refs.bib
+csl: apa.csl
+
+format:
+  html:
+    theme: cosmo
+    code-fold: true
+    lightbox: true
+    comments:
+      hypothesis: true
+  pdf:
+    documentclass: scrreprt
+    papersize: a4
+    header-includes:
+      - \input{maths_shortcuts.tex}
+  docx: default
+  epub: default
+
+execute:
+  warning: false
+  message: false
+  freeze: auto

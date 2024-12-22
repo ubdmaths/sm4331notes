@@ -1,0 +1,75 @@
+{{< include _common.qmd >}}
+
+# Sampling from the normal distribution
+
+## An example
+
+::: {#exm-circuitboard}
+Consider the time to failure (in years) for circuit boards modelled by $\Exp(\lambda)$.
+An independent random sample $X_1,\dots,X_n$ was collected.
+What is the probability that the minimum time lasted is more than 2 years?
+\begin{align*}
+\Pr(\min\{X_1,\dots,X_n\} > 2)
+&=\Pr(X_1 > 2, \dots, X_n > 2) \\
+&=\Pr(X_1>2)\cdots\Pr(X_n>2)\\
+&= \left[\Pr(X_1 > 2)\right]^n \\
+&= [e^{-2/\lambda}]^n \\
+&= e^{-2n/\lambda}
+\end{align*}
+:::
+
+
+A reasonable estimator for $1/\lambda$ is $T_n=\min\{X_1,\dots,X_n\}$.
+
+
+## Finite vs inifinite population
+
+[Infinite population]{.ul}
+
+Implicitly iid: "Removing" $X_1=x_1$ from the population does not affect the probability distribution for the subsequent samples. 
+Why "infinite"? In scenarios where the exact population size is either unknown, uncountable, or effectively limitless, it is simpler to treat it as infinite.
+
+[Finite population]{.ul}
+
+Not necessarily iid, depending on the sampling method:
+
+- Sampling without replacement
+- Cluster sampling
+- Stratified sampling
+- etc.
+
+Standard errors calculations are affected here.
+Check out [Finite Population Correction factors](https://en.wikipedia.org/wiki/Standard_error#Finite_population_correction_(FPC)) if interested.
+
+
+::: {#exm-infinitesampling}
+Estimate the average height of goalkeepers.
+Which ones? Presumably all of them--past, present, and future--in all leagues.
+For all intents and purposes, this is an infinite population.
+:::
+
+
+## An experiment
+
+Using `R`, we can draw multiple instances of the statistic $T_n$.
+Let $n=25$ and $p=0.6$ (true value).
+
+1. Draw $X_1,\dots,X_n\iid \Bern(p)$
+2. Compute $T_n = \sum_{i=1}^n X_i$
+3. Repeat steps 1--2 a total of $B=10000$ times
+
+```{r}
+n <- 25
+p <- 0.6
+B <- 10000
+x <- rbinom(B, n, p)
+
+# First 10 values
+head(x, 10)
+
+ggplot() +
+  geom_histogram(aes(x), fill = "gray30", col = "white", 
+                 breaks = seq(-0.5, n + 0.5, by = 1)) +
+  scale_x_continuous(breaks = seq(0, n, by = 5)) +
+  labs(x = expression(T[n]), y = "Frequency") 
+```

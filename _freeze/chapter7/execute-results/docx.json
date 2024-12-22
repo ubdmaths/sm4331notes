@@ -1,0 +1,21 @@
+{
+  "hash": "35038f70f66c998464db8042dec9b4d7",
+  "result": {
+    "engine": "knitr",
+    "markdown": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# Interval estimation\n\nAdd your notes here.\n",
+    "supporting": [
+      "chapter7_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

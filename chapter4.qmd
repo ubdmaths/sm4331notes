@@ -1,0 +1,85 @@
+{{< include _common.qmd >}}
+
+# Large sample approximations
+
+## Illustration of convergence in probability
+
+While there is no guarantee that the points will eventually stay inside the $\epsilon$-band, the probability of it being outside the band tends to 0.
+
+```{r}
+#| label: fig-convinprob
+#| warning: false
+set.seed(123)
+eps <- 0.15
+plot_df <- tibble(
+  x = 1:25,
+  y = 1 / x ^ {1/1.2} + rnorm(25, sd = 0.1)) %>%
+  mutate(
+    y = case_when(y > 0.45 & x > 2 ~ 0.45, TRUE ~ y),
+    up = y +  8.5 * eps / (x ^ 1),
+    lo = y -  8.5 * eps / (x ^ 1),
+    dist = up - lo,
+    longer = dist > (2 * eps)
+  )  %>%
+  filter(x > 2) 
+
+ggplot(plot_df, aes(x, y, col = longer)) +
+  geom_hline(yintercept = 0, linetype = "dashed", col = "grey60") +
+  geom_hline(yintercept = c(eps, -eps), col = "gray") +
+  annotate("rect", xmax = Inf, xmin = -Inf, ymax = eps, ymin = -eps, alpha = 0.1) +
+  geom_point() + 
+  geom_errorbar(aes(ymin = lo, ymax = up), width = 0.4) +
+  coord_cartesian(ylim = c(-0.3, 0.6), xlim = c(3, 25)) +
+  scale_y_continuous(breaks = c(-eps, 0, eps), 
+                     labels = c(expression(X - epsilon), "X", 
+                                expression(X + epsilon))) +
+  scale_colour_brewer(palette = "Set1") +
+  labs(y = expression(X[n]), x = "n") +
+  theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
+  guides(col = "none") +
+  geom_errorbar(aes(x = 2.05, y = 0, ymax = 0.05, ymin = -0.05), col = "black", 
+                width = 0.4, linewidth = 1)
+```
+
+## Almost sure convergence
+
+::: {#def-almostsureconvergence}
+### Almost sure convergence
+
+$X_n$ converges to $X$ in *almost surely* if for every $\epsilon>0$,
+$$
+\Pr\left(\lim_{n\to\infty} |X_n-X|\geq\epsilon \right) = 0.  
+%\ \Leftrightarrow \ \Pr\left(\lim_{n\to\infty} |X_n-X| < \epsilon \right) = 1.
+$$ 
+We write
+$X_n\xrightarrow{\text{a.s.}}X$.
+
+:::
+
+That is, $X_n(\omega)\to X(\omega)$ for all outcomes $\omega \in \Omega$, except perhaps for a collection of outcomes $\omega \in A$ with $\Pr(A) = 0$.
+This is stronger than (i.e. it implies, but is not implied by) convergence in probability.
+There is no relationship between convergence in mean square and convergence almost surely.
+
+## The Strong Law of Large Numbers
+
+With the same setup as for WLLN, a different argument leads to the stronger conclusion as per the result below.
+
+::: {#thm-slln}
+### Strong Law of Large Numbers
+
+Let $X_1,X_2,\dots$ be iid rvs with mean $\mu$ and variance $\sigma^2$. 
+Let $\bar X_n$ denote the sample mean, i.e. 
+$$
+\bar X_n = \frac{1}{n}\sum_{i=1}^n X_i. 
+$$ 
+Then, $\bar X_n{\xrightarrow{\text{a.s.}}} \mu$ as $n\to\infty$, i.e.
+$$
+\Pr\left(\lim_{n\to\infty} |\bar X_n-\mu| < \epsilon \right) = 1.
+$$
+:::
+
+Proof is outside the scope of this module.
+It's satisfying to know that the SLLN exists, but for our purposes, WLLN suffices!
+
+
+

@@ -1,0 +1,269 @@
+{{< include _common.qmd >}}
+
+# Hypothesis testing
+
+
+## A fuzzy and cute example
+
+On a farm there are 499 white bunnies, and 1 brown bunny.
+One of the bunnies ravaged through the carrot farm, leaving the farmer furious.
+
+![](figures/white_brown_bunny.png){#fig-whitebrownbunny}
+
+
+::: {.callout-note}
+### Question
+
+Can we say that we know, or reasonably believe with confidence, that it was a white bunny that caused the problem? What's your proof?^[Example adapted from Schoeman, F. (1987). Statistical vs. direct evidence. Noûs, 179-198.]
+:::
+
+
+Assume colour difference is not associated with behavioural differences in rabbits.
+If we believe that a white rabbit indeed was at fault, the error rate is 1/500 = 0.2%.
+
+Suppose there was a witness that claimed the brown rabbit did it. The witness performed a colour identification test, reporting the right colour 95% of the time.
+Given the evidence, the probability that a brown rabbit was at fault is
+
+\begin{align*}
+\Pr(B\mid E)
+&= \frac{\Pr(E \mid B) \Pr(B)}{\Pr(E \mid B) \Pr(B) + \Pr(E \mid B^c) \Pr(B^c)} \\
+&= \frac{0.95 \times 0.002}{0.95 \times 0.002 + 0.05 \times 0.998} \\
+&\approx 3.6\%
+\end{align*}
+
+giving an error rate of 96.4\%!
+  
+## Fisherian view
+
+The $p$-value is interpreted as a *continuous measure of evidence* \underline{against}  some null hypothesis--there is no point at which the results become 'significant'.
+
+::: {.callout-caution}
+### Remark
+Statistical evidence differs from direct evidence (e.g. having CCTV recording in the house).
+We may **never know** what exactly happened. 
+The best we can do is to base decisions based on the *likelihood of the evidence* materialising.
+:::
+
+![Credits: <https://xkcd.com/892/>.](https://imgs.xkcd.com/comics/null_hypothesis.png){width=50% fig-align="center" #fig-xkcd-hyp}
+
+
+
+## Uniformity of $p$-values
+
+::: {.callout-note}
+### Question
+Since $p(\bX)$ is a statistic, it is a rv. What is its distribution?
+:::
+
+::: {#thm-uniformity-pvalues}
+### Uniformity of $p$-values
+If $\theta_0$ is a point null hypothesis for the parameter of continuous $\bX$, then a correctly calculated $p$-value $p_T(\bX)$ based on any test statistic $W$, is such that 
+$$
+p_T(\bX) \sim \Unif(0,1)
+$$
+in repeated sampling under $H_0$.
+:::
+
+
+
+::: {.proof}
+This is a consequence of the \emph{probability integral transform}: 
+Suppose that a continuous rv $T$ has cdf $F_T(t), \forall t$. Then the rv $Y=F_T(T)\sim\Unif(0,1)$ because: \vspace{-1.2em}
+$$
+F_Y(y)=\Pr( \myoverbrace{F_T(T)}{Y}\leq y) = \Pr\big(T \leq F^{-1}_T(y)\big) = F_T\left(F^{-1}_T(y) \right) = y,
+$$
+which is the cdf of a $\Unif(0,1)$ distribution.
+
+
+
+Now for any data $\bx$,
+$$
+p_T(\bx) =  \Pr\!{}_{\theta_0}\left(T(\bX) \geq T(\bx) \right) = 1 - F\big( T(\bx) \big),
+$$
+where $F$ is the cdf (under $H_0$) of $T(\bX)$. Hence, $p_T(\bx)=1-Y$ where $Y\sim\Unif(0,1)$ by the probability integral transform. But clearly if $Y\sim\Unif(0,1)$, then so is $1-Y$.
+:::    
+
+This result is useful especially for *checking the validity* of a complicated $p$-value calculation:
+
+1. Simulate several new data sets from the null distribution.
+
+2. For each simulated data set, apply the $p$-value calculation.
+
+3. Assess the collection of resulting $p$-values--do they seem to be uniformly distributed?
+
+Suppose we are testing $H_0:\mu=0$ on a random sample of $X_1,\dots,X_n$ assumed to be normally distributed with mean $\mu$ and variance $\sigma^2=4.3^2$.
+Let's do this experiment:
+
+1. Draw $X_1,\dots,X_{10}\iid\N(0,4.3^2)$ (the distribution under $H_0$)
+2. Compute the $p$-value $p(\bx)$ based on the simulated data
+3. Repeat 1--2 a total of $B=100000$ times to get $p_1,\dots,p_B \in (0,1)$
+
+
+Plotting a histogram of the simulated $p$-values yields:
+
+
+```{r}
+#| label: fig-uniformpvalues
+n <- 10
+sigma <- 4.3
+B <- 100000
+res <- rep(NA, B)
+for (i in 1:B) {
+  x <- rnorm(n, sd = sigma)
+  res[i] <- 2 * (pnorm((sqrt(n) * abs(mean(x)) / sigma), lower.tail = FALSE))
+}
+ggplot() + 
+  geom_histogram(aes(res, ..density..), breaks = seq(0, 1, by = 0.05),
+                 col = "white") +
+  geom_hline(yintercept = 1, linetype = "dashed") +
+  scale_y_continuous(breaks = seq(0, 1, by = 0.25)) +
+  scale_x_continuous(breaks = seq(0, 1, by = 0.1)) +
+  labs(x = "p", y = "Density")
+```
+
+
+Why is this? Assume that $H_0$ is true. In the Neyman-Pearson approach, $\alpha$ is the rate of false positives, i.e. the rate at which the null hypothesis is rejected given that $H_0$ is true. This rate is  fixed. 
+On the other hand, $p=p(\bX)$ is a random variable.
+
+For any value $\alpha$, the null is rejected when the observed $p < \alpha$. 
+This happens, by definition, with probability $\alpha$!
+The only way that this happens is when the $p$-value comes from a uniform  distribution, since $\Pr(U \leq u) = u$. 
+I.e., under the null
+
+- $p$ has a 5% chance of being less than $\alpha=0.05$;
+- $p$ has a 10% chance of being less than $\alpha=0.1$;
+- etc.
+
+So, as a consequence, if $H_0$ is false, then (hopefully) the $p$-values are biased towards 0.
+
+See <http://varianceexplained.org/statistics/interpreting-pvalue-histogram/>.
+
+
+
+## One-sided tests
+
+All of the tests thus far are called *two-sided* tests.
+Sometimes we wish to measure the evidence (against $H_0$) in one direction only.
+
+::: {#exm-onesidedtests}
+Suppose $X_1,\dots,X_n\iid\N(\mu,\sigma^2)$ with $\sigma^2$ known. 
+Consider testing $H_0: \mu \leq 0$.
+<!-- In Example \ref{eg:normalknownvariance}, we may only care about the reduction in blood pressure. -->
+The unrestricted MLE remains $\hat\mu = \bar X$, but the restricted MLE under $H_0$ is a bit tricky.
+With a little bit of reasoning,
+$$
+\tilde\mu=\begin{cases}
+\bar X & \bar X \leq 0 \\
+0 & \bar X > 0
+\end{cases}
+$$
+
+
+
+```{r}
+#| label: fig-onesidedtestmle
+set.seed(123)
+n <- 10
+sigma <- 4.3
+tibble(
+  mu = seq(-6, -2, length = 100),
+  ll = dnorm(-4, mean = mu, sd = sigma, log = TRUE)
+) %>%
+  mutate() %>%
+  ggplot() +
+  annotate("rect", xmin = -Inf,  xmax = 0, ymin = -Inf, ymax = Inf,
+            alpha = 0.2) +
+  geom_line(aes(mu, ll, col = "a")) +
+  geom_line(aes(mu + 5, ll, col = "b")) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+
+  scale_y_continuous(breaks = NULL, name = expression(log~L(mu))) +
+  scale_x_continuous(breaks = 0, name = expression(mu)) +
+  guides(col = "none") 
+```
+
+
+
+Therefore, the log LR statistic depends on the value of $\bar X$:
+$$
+\log W_{LR} = \ell(\hat\mu|\bX) - \ell(\tilde \mu|\bX) = \begin{cases}
+0 & \bar X \leq 0 \\
+\frac{n\bar X^2}{2\sigma^2} & \bar X > 0
+\end{cases}
+$$
+(the second case when $\bar X>0$ is as before).
+The $p$-value from data $\bx$, using the monotonicity of $\bar X$ in the LRT statistic, is
+$$
+p(\bx) = \begin{cases}
+1 &\bar x \leq 0 \\
+\Pr(\bar X > \bar x) = 1-\Phi(\sqrt n \bar x / \sigma) &\bar x > 0 
+\end{cases}
+$$
+Hence, relative to the 'two-sided' test that we saw previously, the $p$-value is *halved* if $\bar x > 0$, and ignores the precise value of $\bar x$ if $\bar x \leq 0$.
+
+:::  
+
+Further remarks:
+
+1. Performing a one-sided test instead of a two-sided test thus makes any apparent evidence against $H_0$ seem stronger (since the $p$-value is halved).
+
+2. In practice there are rather few situations where performing a one-sided test, which assumes that we know in advance that departures from $H_0$ are in one direction only, can be justified. When assessing the effect of a new drug, for example, the convention is to assess evidence for an effect in either direction, positive or negative.
+
+3. The two-sided test is said to be more *conservative* than the one-sided test: The one-sided test risks over-stating the strength of evidence against $H_0$ if the underlying assumption--that evidence against $H_0$ counts in one direction only--is actually false.
+
+
+## "Failing to reject the null hypothesis"
+
+> Absence of proof is not proof of absence. You are not able prove a negative.
+
+1. Australian Tree Lobsters were assumed to be extinct. There was no evidence that any were still living because no one had seen them for decades. Yet in 1960, scientists observed them. 
+
+2. In criminal trial, we start with the assumption that the defendant is innocent until proven guilty. If the prosecutor fails to meet a an evidentiary standard, it does not mean the defendant is innocent.
+
+::: {.callout-warning}
+### Accepting the null hypothesis
+Accepting the null hypothesis indicates that you have proven that an effect does not exist. Maybe, this is what you mean?^[https://statisticsbyjim.com/hypothesis-testing/failing-reject-null-hypothesis/]
+:::
+
+## Asymptotic distribution of LRT: An experiment
+
+Let's try to "verify" the distribution of the test statistic $2\log \lambda(\bX)$.
+
+1. Draw $X_1,\dots,X_{10}\sim\N(8,1)$
+2. Compute $T(\bX) = 2\log \lambda(\bX) = \sum_{i=1}^n (X_i-\bar X)^2$
+3. Repeat steps 1--2 $B=10000$ number of times to get $T_1,\dots,T_B$
+
+We can plot the histogram of the observed test statistic, and overlay a $\chi_9^2$ density over it.
+As can be seen, it is a good fit.
+
+```{r}
+#| label: fig-asymptoticdist
+B <- 10000
+res <- rep(NA, B)
+for (i in 1:B) {
+  X <- rnorm(10, mean = 8)
+  res[i] <- sum((X - mean(X)) ^ 2)
+}
+ggplot() +
+  geom_histogram(aes(x = res, y = ..density..), col = "white") +
+  geom_line(data = tibble(x = seq(0, 35, length = 100),
+                          y = dchisq(x, 10 - 1)),
+            aes(x, y), col = "red3", size = 1) +
+  scale_y_continuous(breaks = NULL) +
+  labs(x = expression(2~log~lambda(X)), y = "Density")
+```
+
+
+
+Actually, in this particular case, the distribution of $2\log\lambda(\bX)$ is **exact**.
+Note that
+$$
+2 \log \lambda(\bX) = \frac{n-1}{n-1} \sum_{i=1}^n (X_i-\bar X)^2 = (n-1)S^2
+$$
+which is the sample variance.
+We've seen previously that
+$$
+\frac{(n-1)S^2}{\sigma^2} \sim\chi^2_{n-1}.
+$$
+Thus, $2\log \lambda(\bX)$ is merely a *scaled* $\chi^2$ distribution (but in this case $\sigma^2=1$).
+
