@@ -19,10 +19,10 @@ book:
   #     This book was built with <a href="https://quarto.org/">Quarto</a>.
   # cover-image: cover.jpg
   # favicon: cover.jpg
-  # site-url: https://r4ds.hadley.nz/
-  # repo-url: https://github.com/hadley/r4ds/
-  # repo-branch: main
-  # repo-actions: [edit, issue]
+  site-url: https://ubdmaths.github.io/sm4331notes/
+  repo-url: https://github.com/ubdmaths/sm4331notes/
+  repo-branch: main
+  repo-actions: [edit, issue]
   
   downloads: [pdf, docx, epub]
   chapters:
