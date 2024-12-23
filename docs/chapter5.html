@@ -317,7 +317,7 @@ window.Quarto = {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(X) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 7.985873</code></pre>
+<pre><code>[1] 7.986668</code></pre>
 </div>
 </div>
 <p>The mean is found to be 7.99. Here’s a plot of the log-likelihood function (<span class="math inline">\(\mu\)</span> against <span class="math inline">\(\ell(\mu)\)</span>):</p>
@@ -362,17 +362,17 @@ Figure&nbsp;5.1: Log-likelihood function of the normal mean.
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">trace =</span> <span class="dv">1</span>  <span class="co"># trace the progress of the optimiser</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>  0:     2593.1342:  1.00000
-  1:     598.78514:  5.00000
-  2:     153.01338:  7.98589
-  3:     153.01338:  7.98587
-  4:     153.01338:  7.98587</code></pre>
+<pre><code>  0:     2578.2008:  1.00000
+  1:     583.53365:  5.00000
+  2:     137.52440:  7.98669
+  3:     137.52440:  7.98667
+  4:     137.52440:  7.98667</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 6
  $ par        : num 7.99
- $ objective  : num 153
+ $ objective  : num 138
  $ convergence: int 0
  $ iterations : int 4
  $ evaluations: Named int [1:2] 6 7

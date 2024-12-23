@@ -497,7 +497,7 @@ Figure&nbsp;1.3: Boba tea companies.
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+<pre><code> [1] 1 1 1 1 1 0 0 1 1 0</code></pre>
 </div>
 </div>
 <p>Let us denote <span class="math inline">\(X_i\)</span> to be the response for individual <span class="math inline">\(i\)</span> to the survey. So in the above, <span class="math inline">\(X_1 = 1\)</span>, <span class="math inline">\(X_2 = 1\)</span>, and so on. The assumption we make here, similar to the probability question above, is that <span class="math inline">\(X_i\sim\text{Bern}(\theta)\)</span> independently. Let’s now work through the solutions:</p>
@@ -506,11 +506,11 @@ Figure&nbsp;1.3: Boba tea companies.
 <ol type="a">
 <li>If <span class="math inline">\(\theta\)</span> represents the proportion of people who like the bubble tea from Pearl Paradise, it would make sense to count the number of people who like the bubble tea, and divide by the total number of responses. Mathematically, <span class="math display">\[
 \frac{1}{n} (X_1 + \dots + X_n) = \frac{1}{n} \sum_{i=1}^n X_i = \bar X_n
-\]</span> So we plug in the numbers and get <span class="math inline">\(\bar X_n = 10 / 10 = 1\)</span>.</li>
+\]</span> So we plug in the numbers and get <span class="math inline">\(\bar X_n = 7 / 10 = 0.7\)</span>.</li>
 </ol>
 </div>
 <p>We often denote the <em>estimate</em> of <span class="math inline">\(\theta\)</span> by its hat version, so we often write <span class="math display">\[
-\hat\theta = 1.
+\hat\theta = 0.7.
 \]</span></p>
 </section>
 <section id="variability-in-your-answer" class="level2">
@@ -550,23 +550,23 @@ Figure&nbsp;1.3: Boba tea companies.
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">quarto.disable_processing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div id="juiuhiwyiy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#juiuhiwyiy table {
+<div id="pgnoyhrlhh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pgnoyhrlhh table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#juiuhiwyiy thead, #juiuhiwyiy tbody, #juiuhiwyiy tfoot, #juiuhiwyiy tr, #juiuhiwyiy td, #juiuhiwyiy th {
+#pgnoyhrlhh thead, #pgnoyhrlhh tbody, #pgnoyhrlhh tfoot, #pgnoyhrlhh tr, #pgnoyhrlhh td, #pgnoyhrlhh th {
   border-style: none;
 }
 
-#juiuhiwyiy p {
+#pgnoyhrlhh p {
   margin: 0;
   padding: 0;
 }
 
-#juiuhiwyiy .gt_table {
+#pgnoyhrlhh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -592,12 +592,12 @@ Figure&nbsp;1.3: Boba tea companies.
   border-left-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_caption {
+#pgnoyhrlhh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#juiuhiwyiy .gt_title {
+#pgnoyhrlhh .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -609,7 +609,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-bottom-width: 0;
 }
 
-#juiuhiwyiy .gt_subtitle {
+#pgnoyhrlhh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -621,7 +621,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-top-width: 0;
 }
 
-#juiuhiwyiy .gt_heading {
+#pgnoyhrlhh .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -633,13 +633,13 @@ Figure&nbsp;1.3: Boba tea companies.
   border-right-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_bottom_border {
+#pgnoyhrlhh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_col_headings {
+#pgnoyhrlhh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -654,7 +654,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-right-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_col_heading {
+#pgnoyhrlhh .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -674,7 +674,7 @@ Figure&nbsp;1.3: Boba tea companies.
   overflow-x: hidden;
 }
 
-#juiuhiwyiy .gt_column_spanner_outer {
+#pgnoyhrlhh .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -686,15 +686,15 @@ Figure&nbsp;1.3: Boba tea companies.
   padding-right: 4px;
 }
 
-#juiuhiwyiy .gt_column_spanner_outer:first-child {
+#pgnoyhrlhh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#juiuhiwyiy .gt_column_spanner_outer:last-child {
+#pgnoyhrlhh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#juiuhiwyiy .gt_column_spanner {
+#pgnoyhrlhh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -706,11 +706,11 @@ Figure&nbsp;1.3: Boba tea companies.
   width: 100%;
 }
 
-#juiuhiwyiy .gt_spanner_row {
+#pgnoyhrlhh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#juiuhiwyiy .gt_group_heading {
+#pgnoyhrlhh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -736,7 +736,7 @@ Figure&nbsp;1.3: Boba tea companies.
   text-align: left;
 }
 
-#juiuhiwyiy .gt_empty_group_heading {
+#pgnoyhrlhh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -751,15 +751,15 @@ Figure&nbsp;1.3: Boba tea companies.
   vertical-align: middle;
 }
 
-#juiuhiwyiy .gt_from_md > :first-child {
+#pgnoyhrlhh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#juiuhiwyiy .gt_from_md > :last-child {
+#pgnoyhrlhh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#juiuhiwyiy .gt_row {
+#pgnoyhrlhh .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -778,7 +778,7 @@ Figure&nbsp;1.3: Boba tea companies.
   overflow-x: hidden;
 }
 
-#juiuhiwyiy .gt_stub {
+#pgnoyhrlhh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -791,7 +791,7 @@ Figure&nbsp;1.3: Boba tea companies.
   padding-right: 5px;
 }
 
-#juiuhiwyiy .gt_stub_row_group {
+#pgnoyhrlhh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -805,15 +805,15 @@ Figure&nbsp;1.3: Boba tea companies.
   vertical-align: top;
 }
 
-#juiuhiwyiy .gt_row_group_first td {
+#pgnoyhrlhh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#juiuhiwyiy .gt_row_group_first th {
+#pgnoyhrlhh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#juiuhiwyiy .gt_summary_row {
+#pgnoyhrlhh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -823,16 +823,16 @@ Figure&nbsp;1.3: Boba tea companies.
   padding-right: 5px;
 }
 
-#juiuhiwyiy .gt_first_summary_row {
+#pgnoyhrlhh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_first_summary_row.thick {
+#pgnoyhrlhh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#juiuhiwyiy .gt_last_summary_row {
+#pgnoyhrlhh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -842,7 +842,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-bottom-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_grand_summary_row {
+#pgnoyhrlhh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -852,7 +852,7 @@ Figure&nbsp;1.3: Boba tea companies.
   padding-right: 5px;
 }
 
-#juiuhiwyiy .gt_first_grand_summary_row {
+#pgnoyhrlhh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -862,7 +862,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-top-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_last_grand_summary_row_top {
+#pgnoyhrlhh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -872,11 +872,11 @@ Figure&nbsp;1.3: Boba tea companies.
   border-bottom-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_striped {
+#pgnoyhrlhh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#juiuhiwyiy .gt_table_body {
+#pgnoyhrlhh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -885,7 +885,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-bottom-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_footnotes {
+#pgnoyhrlhh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -899,7 +899,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-right-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_footnote {
+#pgnoyhrlhh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -908,7 +908,7 @@ Figure&nbsp;1.3: Boba tea companies.
   padding-right: 5px;
 }
 
-#juiuhiwyiy .gt_sourcenotes {
+#pgnoyhrlhh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -922,7 +922,7 @@ Figure&nbsp;1.3: Boba tea companies.
   border-right-color: #D3D3D3;
 }
 
-#juiuhiwyiy .gt_sourcenote {
+#pgnoyhrlhh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -930,72 +930,72 @@ Figure&nbsp;1.3: Boba tea companies.
   padding-right: 5px;
 }
 
-#juiuhiwyiy .gt_left {
+#pgnoyhrlhh .gt_left {
   text-align: left;
 }
 
-#juiuhiwyiy .gt_center {
+#pgnoyhrlhh .gt_center {
   text-align: center;
 }
 
-#juiuhiwyiy .gt_right {
+#pgnoyhrlhh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#juiuhiwyiy .gt_font_normal {
+#pgnoyhrlhh .gt_font_normal {
   font-weight: normal;
 }
 
-#juiuhiwyiy .gt_font_bold {
+#pgnoyhrlhh .gt_font_bold {
   font-weight: bold;
 }
 
-#juiuhiwyiy .gt_font_italic {
+#pgnoyhrlhh .gt_font_italic {
   font-style: italic;
 }
 
-#juiuhiwyiy .gt_super {
+#pgnoyhrlhh .gt_super {
   font-size: 65%;
 }
 
-#juiuhiwyiy .gt_footnote_marks {
+#pgnoyhrlhh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#juiuhiwyiy .gt_asterisk {
+#pgnoyhrlhh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#juiuhiwyiy .gt_indent_1 {
+#pgnoyhrlhh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#juiuhiwyiy .gt_indent_2 {
+#pgnoyhrlhh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#juiuhiwyiy .gt_indent_3 {
+#pgnoyhrlhh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#juiuhiwyiy .gt_indent_4 {
+#pgnoyhrlhh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#juiuhiwyiy .gt_indent_5 {
+#pgnoyhrlhh .gt_indent_5 {
   text-indent: 25px;
 }
 
-#juiuhiwyiy .katex-display {
+#pgnoyhrlhh .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#juiuhiwyiy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#pgnoyhrlhh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1009,65 +1009,65 @@ Figure&nbsp;1.3: Boba tea companies.
   </thead>
   <tbody class="gt_table_body">
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,0,1,1,1,1,1,1</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MCwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">0,1,1,1,1,1,1,1,1,1</span></span></td>
 <td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Mg=="><span class="gt_from_md">2</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,0,1,1,1,1,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Mw=="><span class="gt_from_md">3</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwwLDAsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,0,0,0,1,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC43"><span class="gt_from_md">0.7</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="NA=="><span class="gt_from_md">4</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMCwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,0,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="NQ=="><span class="gt_from_md">5</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,0</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Ng=="><span class="gt_from_md">6</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDAsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,0,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Nw=="><span class="gt_from_md">7</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MCwxLDEsMSwwLDEsMCwxLDAsMA=="><span class="gt_from_md">0,1,1,1,0,1,0,1,0,0</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC41"><span class="gt_from_md">0.5</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="OA=="><span class="gt_from_md">8</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="OQ=="><span class="gt_from_md">9</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwwLDEsMCwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,0,1,0,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTA="><span class="gt_from_md">10</span></span></td>
 <td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,0,1,1,1,1,1,0</span></span></td>
 <td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Mw=="><span class="gt_from_md">3</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="NA=="><span class="gt_from_md">4</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDAsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,0,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="NQ=="><span class="gt_from_md">5</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwwLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,0,1,0,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Ng=="><span class="gt_from_md">6</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwwLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,0,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Nw=="><span class="gt_from_md">7</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="OA=="><span class="gt_from_md">8</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MCwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">0,1,1,1,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="OQ=="><span class="gt_from_md">9</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MCwxLDEsMSwxLDAsMSwxLDAsMQ=="><span class="gt_from_md">0,1,1,1,1,0,1,1,0,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC43"><span class="gt_from_md">0.7</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTA="><span class="gt_from_md">10</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDAsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,0,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTE="><span class="gt_from_md">11</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwwLDEsMCwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,0,1,0,1,1,1,1,1,1</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMCwxLDAsMQ=="><span class="gt_from_md">1,1,1,1,1,1,0,1,0,1</span></span></td>
 <td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTI="><span class="gt_from_md">12</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMCwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,0,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwwLDAsMSwxLDAsMA=="><span class="gt_from_md">1,1,0,1,0,0,1,1,0,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC41"><span class="gt_from_md">0.5</span></span></td></tr>
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTM="><span class="gt_from_md">13</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDAsMSwxLDAsMA=="><span class="gt_from_md">1,1,1,1,1,0,1,1,0,0</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC43"><span class="gt_from_md">0.7</span></span></td></tr>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,0,1,1,1,1,1,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTQ="><span class="gt_from_md">14</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDAsMCwwLDEsMQ=="><span class="gt_from_md">1,1,1,0,1,0,0,0,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC42"><span class="gt_from_md">0.6</span></span></td></tr>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDAsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,0,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTU="><span class="gt_from_md">15</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,0,1,1,1,1,1,1,1</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MCwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">0,1,1,1,1,1,1,1,1,1</span></span></td>
 <td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
     <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTY="><span class="gt_from_md">16</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTc="><span class="gt_from_md">17</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,1</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTg="><span class="gt_from_md">18</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDAsMSwxLDAsMA=="><span class="gt_from_md">1,1,1,1,1,0,1,1,0,0</span></span></td>
-<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC43"><span class="gt_from_md">0.7</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTk="><span class="gt_from_md">19</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwxLDEsMSwxLDAsMQ=="><span class="gt_from_md">1,1,0,1,1,1,1,1,0,1</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwwLDAsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,0,0,1,1,1,1,1,1,1</span></span></td>
 <td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
-    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MjA="><span class="gt_from_md">20</span></span></td>
-<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMCwxLDEsMSwwLDEsMA=="><span class="gt_from_md">1,1,0,0,1,1,1,0,1,0</span></span></td>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTc="><span class="gt_from_md">17</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,0,1,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTg="><span class="gt_from_md">18</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MCwxLDEsMSwwLDEsMCwxLDEsMA=="><span class="gt_from_md">0,1,1,1,0,1,0,1,1,0</span></span></td>
 <td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC42"><span class="gt_from_md">0.6</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTk="><span class="gt_from_md">19</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MjA="><span class="gt_from_md">20</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDAsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,0,1,0,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
   </tbody>
   
   
