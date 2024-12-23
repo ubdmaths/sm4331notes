@@ -1,0 +1,9 @@
+{{< lipsum 1 >}}
+
+::: {#fig-placeholder}
+{{< placeholder 400 200 >}}
+
+Caption for the image.
+:::
+
+@fig-placeholder shows an image.

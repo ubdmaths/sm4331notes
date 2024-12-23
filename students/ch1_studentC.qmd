@@ -1,0 +1,15 @@
+{{< lipsum 1 >}}
+
+Write R code like this:
+
+```` markdown
+```{{r}}
+1 + 1
+```
+````
+
+Which will be rendered as:
+
+```{r}
+1 + 1
+```

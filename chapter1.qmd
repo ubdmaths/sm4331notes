@@ -2,6 +2,25 @@
 
 # Probability Theory Primer
 
+::: {.callout-caution}
+### Hello, Students!
+Students, write your notes in the corresponding `.qmd` files under the `students/` folder.
+The Editor will then merge everything into one cohesive notes.
+
+BTW, for more callout blocks, look here: <https://quarto.org/docs/authoring/callouts.html>
+:::
+
+{{< include students/ch1_studentA.qmd >}}
+{{< include students/ch1_studentB.qmd >}}
+{{< include students/ch1_studentC.qmd >}}
+
+::: {.callout-tip}
+Feel free to rearrange the sections however you wish.
+Below, you will find some extra bits that you may want to include as part of your notes, or just leave them as the appendix.
+:::
+
+--------------
+
 ## Algebras of sets
 
 This is the mathematical structure that allows us to *observe* and *measure* random events.
