@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -42,6 +76,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -76,6 +113,35 @@ ul.task-list li input[type="checkbox"] {
   });
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -209,6 +275,13 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#what-is-statistics" id="toc-what-is-statistics" class="nav-link" data-scroll-target="#what-is-statistics">What is statistics?</a>
+  <ul class="collapse">
+  <li><a href="#a-probability-example" id="toc-a-probability-example" class="nav-link" data-scroll-target="#a-probability-example">A probability example</a></li>
+  <li><a href="#a-statistical-example" id="toc-a-statistical-example" class="nav-link" data-scroll-target="#a-statistical-example">A statistical example</a></li>
+  <li><a href="#variability-in-your-answer" id="toc-variability-in-your-answer" class="nav-link" data-scroll-target="#variability-in-your-answer">Variability in your answer</a></li>
+  <li><a href="#probability-vs-statistics" id="toc-probability-vs-statistics" class="nav-link" data-scroll-target="#probability-vs-statistics">Probability vs statistics</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ubdmaths/sm4331notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ubdmaths/sm4331notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -236,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">December 22, 2024</p>
+      <p class="date-modified">December 23, 2024</p>
     </div>
   </div>
     
@@ -250,8 +323,901 @@ ul.task-list li input[type="checkbox"] {
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
 <p>These are the notes for SM-4331 Advanced Statistics.</p>
+</section>
+<section id="what-is-statistics" class="level1">
+<h1>What is statistics?</h1>
+<p><strong>Statistics</strong> is a scientific subject on collecting and analysing data.</p>
+<ul>
+<li><p><strong>Collecting</strong> means designing experiments, designing questionnaires, designing sampling schemes, administration of data collection.</p></li>
+<li><p><strong>Analysing</strong> means modelling, estimation, testing, forecasting.</p></li>
+</ul>
+<div id="fig-statsdatascience" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-statsdatascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/00-ds2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Figure&nbsp;1.1: "><img src="figures/00-ds2.png" id="fig-statsdatascience" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-statsdatascience-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.1
+</figcaption>
+</figure>
+</div>
+<p>Statistics is an application-oriented mathematical subject; it is particularly useful or helpful in answering questions such as:</p>
+<ul>
+<li>Does a certain new drug prolong life for AIDS sufferers?</li>
+<li>Is global warming really happening?</li>
+<li>Are O-level and A-level examinations standard declining?</li>
+<li>Is the house market in Brunei oversaturated?</li>
+<li>Is the Chinese yuan undervalued? If so, by how much?</li>
+</ul>
+<p>There are three aspects to learning statistics:</p>
+<ol type="1">
+<li><strong>Ideas and concepts</strong>. Understanding why statistics is needed, and what you are able to do and not do with statistics.</li>
+<li><strong>Methods</strong>. Knowing “how to do” (applied) statistics.</li>
+<li><strong>Theory</strong>. Knowing the “why” of statistics and understanding why things are the way they are. Very mathematics focused.</li>
+</ol>
+<p>In this course, there is an emphasis on the <strong>theory</strong> aspect of statistics.</p>
+<blockquote class="blockquote">
+<p><em>Students who analyze data, or who aspire to develop new methods for analyzing data, should be well grounded in basic probability and mathematical statistics. Using fancy tools like neural nets, boosting, and support vector machines without understanding basic statistics is like doing brain surgery before knowing how to use a band-aid.</em></p>
+<div style="text-align: right;">
+—Larry Wasserman (in All of Statistics)
+</div>
+</blockquote>
+<section id="a-probability-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-probability-example">A probability example</h2>
+<p>In Brunei, boba tea is a sensation, with countless shops vying for the title of the “best” through customer satisfaction ratings. <em>Tapioca Treasure</em>, one of the crowd favorites, boasts an impressive 4.3 out of 5-star rating—based on a simple question: <em>Do you like their bubble tea?</em></p>
+<div id="fig-bubbletea" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bubbletea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://images.unsplash.com/photo-1734770580735-796a00e42cb2?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1.2: Credits: Unsplash @Snappr."><img src="https://images.unsplash.com/photo-1734770580735-796a00e42cb2?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bubbletea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.2: Credits: Unsplash <a href="https://unsplash.com/photos/three-different-colored-cups-sitting-on-top-of-a-wooden-table-QN66qNwc1n8">@Snappr</a>.
+</figcaption>
+</figure>
+</div>
+<p>Intrigued, you and a friend decide to visit and sample their offerings. This raises some interesting <strong>probability</strong>-based questions:</p>
+<div id="exr-probability" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1.1</strong></span> &nbsp;</p>
+<ol type="a">
+<li>What is the probability that you like the bubble tea?<br>
+</li>
+<li>What is the probability that at least one of you likes the bubble tea?<br>
+</li>
+<li>Suppose you invite your entire family of size (n). What is the expected number of people who will enjoy the bubble tea?<br>
+</li>
+</ol>
+</div>
+<p><em>[Of course, these questions involve certain assumptions, which we’ll discuss in a bit.]</em></p>
+<div id="sol-probability" class="proof solution">
+<p><span class="proof-title"><em>Solution 1.1</em>. </span>Let <span class="math inline">\(X\)</span> represent whether a person likes the bubble tea at <em>Tapioca Treasure</em>. We may write <span class="math display">\[
+X = \begin{cases}
+1 &amp; \text{likes tea} \\
+0 &amp; \text{does not like tea} \\
+\end{cases}
+\]</span> which is a convenient way of “coding” the qualitative response of like / do not like into numbers (1/0). Suppose that <span class="math inline">\(X\)</span> is a random variable, then we may also write <span class="math display">\[
+\operatorname{P}(X=1) := \theta = 0.86,
+\]</span> based on the shop’s 4.3/5 star rating, interpreted as an 86% likelihood of liking the bubble tea. Since <span class="math inline">\(X\)</span> is a binary random variable (i.e.&nbsp;takes only two outcomes), <span class="math inline">\(X\)</span> is said to follow a <em>Bernoulli</em> distribution<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<ol type="a">
+<li><p>Since <span class="math inline">\(X \sim \text{Bernoulli}(\theta)\)</span>, the probability that you like the bubble tea is simply: <span class="math display">\[
+P(X = 1) = \theta = 0.86.
+\]</span></p></li>
+<li><p>Let <span class="math inline">\(Y\)</span> denote whether you or your friend like the bubble tea. Assume the two events are independent. The probability that at least one of you likes the bubble tea is given by: <span class="math display">\[\begin{align*}
+\operatorname{P}(Y \geq 1)
+&amp;= 1 - P(\text{neither likes it}) \\
+&amp;= 1 - P(X_1 = 0)P(X_2 = 0),
+\end{align*}\]</span> where <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> represent your and your friend’s preferences, respectively. Substituting the values: <span class="math display">\[\begin{align*}
+P(Y \geq 1)
+&amp;= 1 - (1 - \theta)(1 - \theta) \\
+&amp;= 1 - (1 - 0.86)^2 \\
+&amp;= 1 - 0.14^2 \\
+&amp;= 1 - 0.0196 \\
+&amp;= 0.9804.
+\end{align*}\]</span> Thus, there is approximately a 98.04% chance that at least one of you will like the bubble tea.</p></li>
+<li><p>If you invite your entire family of size <span class="math inline">\(n\)</span>, the number of people who like the bubble tea <span class="math inline">\(S\)</span> is known to follow a Binomial distribution: <span class="math display">\[
+S \sim \text{Binomial}(n, \theta).
+\]</span> Using properties of the Binomial distribution, the expected value of a Binomial random variable is given by: <span class="math display">\[
+E(S) = n\theta.
+\]</span> Substituting the values: <span class="math display">\[
+E(S) = 0.86n.
+\]</span></p></li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Assumptions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In part (b) above, we came to the solution by assuming that you and your friend have the same probability of liking the tea. In other words, your preferences are independent of each other<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>In fact, for the binomial distribution, this same assumption must be met for all your family members.</p>
+</div>
+</div>
+</section>
+<section id="a-statistical-example" class="level2">
+<h2 class="anchored" data-anchor-id="a-statistical-example">A statistical example</h2>
+<p>Suppose you’re hired by a new boba tea shop, <em>Pearl Paradise</em>, to determine whether their signature drink is as good as their rival’s, <em>Tapioca Treasure</em>.</p>
+<div id="fig-bobatea" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bobatea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bobatea" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-pearlparadise" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-pearlparadise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/pearlparadise.png" class="lightbox" data-gallery="fig-bobatea" title="Figure&nbsp;1.3&nbsp;(a): Pearl Paradise"><img src="figures/pearlparadise.png" class="img-fluid figure-img" data-ref-parent="fig-bobatea"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-pearlparadise-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Pearl Paradise
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-bobatea" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-tapiocatreasure" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-tapiocatreasure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="figures/tapiocatreasure.png" class="lightbox" data-gallery="fig-bobatea" title="Figure&nbsp;1.3&nbsp;(b): Tapioca Treasure"><img src="figures/tapiocatreasure.png" class="img-fluid figure-img" data-ref-parent="fig-bobatea"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-tapiocatreasure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Tapioca Treasure
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bobatea-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.3: Boba tea companies.
+</figcaption>
+</figure>
+</div>
+<p>The questions we have to answer are:</p>
+<div id="exr-pearlparadise" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1.2</strong></span> &nbsp;</p>
+<ol type="a">
+<li>What is the rating (<span class="math inline">\(\theta\)</span>) for Pearl Paradise?</li>
+<li>Is <span class="math inline">\(\theta = 0.86\)</span> or not?</li>
+<li>How confident are we in our estimate?</li>
+</ol>
+</div>
+<p>Notice how these questions are fundamentally different from the previous questions. Previous calculations are “straightforward” if you know probabilities and distribution theory, since the <span class="math inline">\(\theta\)</span> value is given. Here, you’re dealing with the fact that the <span class="math inline">\(\theta\)</span> values is <strong>unknown</strong>, and somehow is the focus of attention.</p>
+<p>The other thing you might realise is that there is no way of answering the questions <em>without having data points</em> to infer from. This is the difference between statistics and probability. The above three questions implicitly describe the three main activities concerning statistical inference: 1. Point estimation; 2. Hypothesis testing; and 3. Interval estimation.</p>
+<p>For now, let us assume that we may collect some data, to at least answer the first part (a). You conduct a survey of 10 random individuals, and ask them the question “Do you like the bubble tea from Pearl Paradise?”. Here are the responses to the survey:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>theta_pp <span class="ot">&lt;-</span> <span class="fl">0.8</span>  <span class="co"># PRETEND YOU DON'T KNOW THIS</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> theta_pp)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1 1 1 1 1 1 1 1 1 1</code></pre>
+</div>
+</div>
+<p>Let us denote <span class="math inline">\(X_i\)</span> to be the response for individual <span class="math inline">\(i\)</span> to the survey. So in the above, <span class="math inline">\(X_1 = 1\)</span>, <span class="math inline">\(X_2 = 1\)</span>, and so on. The assumption we make here, similar to the probability question above, is that <span class="math inline">\(X_i\sim\text{Bern}(\theta)\)</span> independently. Let’s now work through the solutions:</p>
+<div id="sol-pearlparadise" class="proof solution">
+<p><span class="proof-title"><em>Solution 1.2</em>. </span></p>
+<ol type="a">
+<li>If <span class="math inline">\(\theta\)</span> represents the proportion of people who like the bubble tea from Pearl Paradise, it would make sense to count the number of people who like the bubble tea, and divide by the total number of responses. Mathematically, <span class="math display">\[
+\frac{1}{n} (X_1 + \dots + X_n) = \frac{1}{n} \sum_{i=1}^n X_i = \bar X_n
+\]</span> So we plug in the numbers and get <span class="math inline">\(\bar X_n = 10 / 10 = 1\)</span>.</li>
+</ol>
+</div>
+<p>We often denote the <em>estimate</em> of <span class="math inline">\(\theta\)</span> by its hat version, so we often write <span class="math display">\[
+\hat\theta = 1.
+\]</span></p>
+</section>
+<section id="variability-in-your-answer" class="level2">
+<h2 class="anchored" data-anchor-id="variability-in-your-answer">Variability in your answer</h2>
+<p><a href="figures/00-popsample.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="figures/00-popsample.png" class="img-fluid"></a></p>
+<p>I am sure you notice, that the estimate <span class="math inline">\(\hat\theta\)</span> will depend on <em>who you ask</em> in the survey. In the context of Pearl Paradise, the population represents all potential customers who could provide their opinion about the boba tea, while the sample refers to the subset of individuals surveyed.</p>
+<p>Consider a <em>random sample</em> of size <span class="math inline">\(n\)</span> (in the example above, <span class="math inline">\(n=10\)</span>): <span class="math display">\[
+\mathcal S = \{X_1,\dots,X_n\}.
+\]</span> Here <span class="math inline">\(X_i\)</span> are concrete numbers or data regarding the population which is pertinent to answer your statistical question. In statistical inference, we use the sample data to estimate characteristics of the population, such as the proportion of customers who like Pearl Paradise’s boba tea. Since it is often impractical to survey the entire population, we rely on the sample to draw conclusions, recognizing that there is uncertainty due to sampling variability.</p>
+<p>Of course, a lot of things can influence this, such as demographics, time period, circumstances, non-response rates, etc. – and there’s a lot of work to ensure “representativeness” of a sample, but our course does not deal with this.</p>
+<p>But even if all things perfect, there is inherent randomness due to sampling itself. We can simulate this by repeatedly conducting the survey of 10 people. Here are the results:</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">20</span>  <span class="co"># number of repeated surveys</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  res[[i]] <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="at">n =</span> n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> theta_pp)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>tab <span class="ot">&lt;-</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">survey =</span> <span class="dv">1</span><span class="sc">:</span>B,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> res</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">theta_hat =</span> <span class="fu">sapply</span>(X, mean),</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">X =</span> <span class="fu">sapply</span>(X, \(x) <span class="fu">paste0</span>(x, <span class="at">collapse =</span> <span class="st">","</span>))</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">gt</span>(tab) <span class="sc">|&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_markdown</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    survey <span class="sc">~</span> <span class="st">"Survey no."</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    theta_hat <span class="sc">~</span> gt<span class="sc">::</span><span class="fu">md</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">hat</span><span class="sc">\\</span><span class="st">theta$"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(<span class="at">quarto.disable_processing =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="juiuhiwyiy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#juiuhiwyiy table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#juiuhiwyiy thead, #juiuhiwyiy tbody, #juiuhiwyiy tfoot, #juiuhiwyiy tr, #juiuhiwyiy td, #juiuhiwyiy th {
+  border-style: none;
+}
+
+#juiuhiwyiy p {
+  margin: 0;
+  padding: 0;
+}
+
+#juiuhiwyiy .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#juiuhiwyiy .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#juiuhiwyiy .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#juiuhiwyiy .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#juiuhiwyiy .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#juiuhiwyiy .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#juiuhiwyiy .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#juiuhiwyiy .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#juiuhiwyiy .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#juiuhiwyiy .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#juiuhiwyiy .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#juiuhiwyiy .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#juiuhiwyiy .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#juiuhiwyiy .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#juiuhiwyiy .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#juiuhiwyiy .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#juiuhiwyiy .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#juiuhiwyiy .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#juiuhiwyiy .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#juiuhiwyiy .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#juiuhiwyiy .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#juiuhiwyiy .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#juiuhiwyiy .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#juiuhiwyiy .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#juiuhiwyiy .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#juiuhiwyiy .gt_left {
+  text-align: left;
+}
+
+#juiuhiwyiy .gt_center {
+  text-align: center;
+}
+
+#juiuhiwyiy .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#juiuhiwyiy .gt_font_normal {
+  font-weight: normal;
+}
+
+#juiuhiwyiy .gt_font_bold {
+  font-weight: bold;
+}
+
+#juiuhiwyiy .gt_font_italic {
+  font-style: italic;
+}
+
+#juiuhiwyiy .gt_super {
+  font-size: 65%;
+}
+
+#juiuhiwyiy .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#juiuhiwyiy .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#juiuhiwyiy .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#juiuhiwyiy .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#juiuhiwyiy .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#juiuhiwyiy .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#juiuhiwyiy .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#juiuhiwyiy .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#juiuhiwyiy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="true" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="survey">Survey no.</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="X">X</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="theta_hat"><span data-qmd-base64="XChcaGF0XHRoZXRhXCk="><span class="gt_from_md">\(\hat\theta\)</span></span></th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,0,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Mg=="><span class="gt_from_md">2</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,0,1,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Mw=="><span class="gt_from_md">3</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwwLDAsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,0,0,0,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC43"><span class="gt_from_md">0.7</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="NA=="><span class="gt_from_md">4</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMCwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,0,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="NQ=="><span class="gt_from_md">5</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Ng=="><span class="gt_from_md">6</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDAsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,0,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="Nw=="><span class="gt_from_md">7</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MCwxLDEsMSwwLDEsMCwxLDAsMA=="><span class="gt_from_md">0,1,1,1,0,1,0,1,0,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC41"><span class="gt_from_md">0.5</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="OA=="><span class="gt_from_md">8</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="OQ=="><span class="gt_from_md">9</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwwLDEsMCwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,0,1,0,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTA="><span class="gt_from_md">10</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDEsMSwxLDEsMA=="><span class="gt_from_md">1,1,1,0,1,1,1,1,1,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTE="><span class="gt_from_md">11</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwwLDEsMCwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,0,1,0,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTI="><span class="gt_from_md">12</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMCwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,0,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTM="><span class="gt_from_md">13</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDAsMSwxLDAsMA=="><span class="gt_from_md">1,1,1,1,1,0,1,1,0,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC43"><span class="gt_from_md">0.7</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTQ="><span class="gt_from_md">14</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMCwxLDAsMCwwLDEsMQ=="><span class="gt_from_md">1,1,1,0,1,0,0,0,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC42"><span class="gt_from_md">0.6</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTU="><span class="gt_from_md">15</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,0,1,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC45"><span class="gt_from_md">0.9</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTY="><span class="gt_from_md">16</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTc="><span class="gt_from_md">17</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDEsMSwxLDEsMQ=="><span class="gt_from_md">1,1,1,1,1,1,1,1,1,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MQ=="><span class="gt_from_md">1</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTg="><span class="gt_from_md">18</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDEsMSwxLDAsMSwxLDAsMA=="><span class="gt_from_md">1,1,1,1,1,0,1,1,0,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC43"><span class="gt_from_md">0.7</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MTk="><span class="gt_from_md">19</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMSwxLDEsMSwxLDAsMQ=="><span class="gt_from_md">1,1,0,1,1,1,1,1,0,1</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC44"><span class="gt_from_md">0.8</span></span></td></tr>
+    <tr><td headers="survey" class="gt_row gt_right"><span data-qmd-base64="MjA="><span class="gt_from_md">20</span></span></td>
+<td headers="X" class="gt_row gt_right"><span data-qmd-base64="MSwxLDAsMCwxLDEsMSwwLDEsMA=="><span class="gt_from_md">1,1,0,0,1,1,1,0,1,0</span></span></td>
+<td headers="theta_hat" class="gt_row gt_right"><span data-qmd-base64="MC42"><span class="gt_from_md">0.6</span></span></td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+</div>
+<p>Suppose we conducted more and more of the surveys, we could even get more information regarding <em>the variability of the estimator</em>. Ideally, we could even plot a histogram to show the <em>distribution</em> of the estimator.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">100000</span>  <span class="co"># number of repeated surveys</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>theta_hats <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  theta_hats[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">rbinom</span>(<span class="at">n =</span> n, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> theta_pp))</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">theta_hat =</span> theta_hats</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> theta_hat)) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">binwidth =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-variabilityestimator" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-variabilityestimator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="index_files/figure-html/fig-variabilityestimator-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Figure&nbsp;1.4: Histogram of estimated \hat\theta values in repeated sampling of 100,000 surveys."><img src="index_files/figure-html/fig-variabilityestimator-1.png" class="img-fluid figure-img" width="672"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-variabilityestimator-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1.4: Histogram of estimated <span class="math inline">\(\hat\theta\)</span> values in repeated sampling of 100,000 surveys.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In <a href="#fig-variabilityestimator" class="quarto-xref">Figure&nbsp;<span>1.4</span></a> above, it is really evident that under repeated sampling, it is obvious to pick “the best” estimator value <span class="math inline">\(\hat\theta\)</span>, say, by choosing the value corresponding to the highest bar.</p>
+<p>But we cannot “do” repeated sampling most of the time. It is too tiresome, expensive, and just not feasible or impossible sometimes! (Think clinical trials… can you repeat the trial 10,000 times?!). Can we still do something about it then? Yes! By studying statistics from a mathematical angle, we can come up with neat results to come up with reliable statements about the variability of estimators.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Take aways
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Estimators (such as <span class="math inline">\(\hat\theta=\bar X_n\)</span>) are functions of random variables, and therefore <strong>are themselves random</strong> (i.e.&nbsp;have variability).</p></li>
+<li><p>Figuring out the distribution of estimators is the <u>central idea</u> around statistics.</p></li>
+<li><p>From the distribution of <span class="math inline">\(\hat\theta\)</span>, we can know</p>
+<ol type="a">
+<li><span class="math inline">\(\mathop{\mathrm{E}}(\hat\theta)\)</span> – the average value to expect.</li>
+<li><span class="math inline">\(\mathop{\mathrm{Var}}(\hat\theta)\)</span> – how variable is my estimator?</li>
+<li><span class="math inline">\(\operatorname{P}(a &lt; \hat\theta b)\)</span> – how confident am I that my estimator lies in a certain interval?</li>
+</ol></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="probability-vs-statistics" class="level2">
+<h2 class="anchored" data-anchor-id="probability-vs-statistics">Probability vs statistics</h2>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{fit,positioning,shapes.geometric,decorations.pathreplacing,calc}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=0.8, transform shape]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\tikzstyle</span>{obsvar}=[rectangle, thick, minimum size = 10mm,draw =black!80, node distance = 1mm]</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\tikzstyle</span>{connect}=[-latex, thick]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[obsvar] (fx) [] {<span class="ss">$</span><span class="sc">\hspace</span><span class="ss">{1em}f(x|</span><span class="sc">\theta</span><span class="ss">)</span><span class="sc">\hspace</span><span class="ss">{1em}$</span>};</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (xx) [right=of fx] {<span class="fu">\textcolor</span>{blue}{<span class="ss">$</span><span class="sc">\{</span><span class="ss">X_1,</span><span class="sc">\dots</span><span class="ss">,X_n</span><span class="sc">\}</span><span class="ss">$</span>}};</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (theta) [left=of fx] {<span class="fu">\textcolor</span>{red}{<span class="ss">$</span><span class="sc">\theta</span><span class="ss">$</span>}};</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d1) [below=of fx,yshift=9mm] {Model};</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d2) [below=of xx,yshift=11mm] {<span class="fu">\scriptsize</span> <span class="fu">\textcolor</span>{blue}{prob.}};</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d3) [below=of theta,yshift=11mm] {<span class="fu">\scriptsize</span> <span class="fu">\textcolor</span>{red}{param.}};</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d1) [above=of fx,yshift=-5mm] {<span class="fu">\underline</span>{Probability}};</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\path</span> (fx) edge [connect] (xx)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>      (theta) edge [connect] (fx);</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="index_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>What is <span class="math inline">\(\mathop{\mathrm{E}}(X)\)</span>?</li>
+<li>What is <span class="math inline">\(\operatorname{P}(X &gt; a)\)</span>?</li>
+</ul>
+</div><div class="column" style="width:48%;">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{fit,positioning,shapes.geometric,decorations.pathreplacing,calc}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=0.8, transform shape]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\tikzstyle</span>{obsvar}=[rectangle, thick, minimum size = 10mm,draw =black!80, node distance = 1mm]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\tikzstyle</span>{connect}=[-latex, thick]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[obsvar] (fx) [] {<span class="ss">$</span><span class="sc">\hspace</span><span class="ss">{1em}f(x|</span><span class="sc">\theta</span><span class="ss">)</span><span class="sc">\hspace</span><span class="ss">{1em}$</span>};</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (xx) [right=of fx] {<span class="fu">\textcolor</span>{red}{<span class="ss">$</span><span class="sc">\{</span><span class="ss">x_1,</span><span class="sc">\dots</span><span class="ss">,x_n</span><span class="sc">\}</span><span class="ss">$</span>}};</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (theta) [left=of fx] {<span class="fu">\textcolor</span>{blue}{<span class="ss">$</span><span class="sc">\hat\theta</span><span class="ss">$</span>}};</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d1) [below=of fx,yshift=9mm] {Model};</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d2) [below=of xx,yshift=11mm] {<span class="fu">\scriptsize</span> <span class="fu">\textcolor</span>{red}{data}};</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d3) [below=of theta,yshift=11mm] {<span class="fu">\scriptsize</span> <span class="fu">\textcolor</span>{blue}{est.}};</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span> (d1) [above=of fx,yshift=-5mm] {<span class="fu">\underline</span>{Statistics}};</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\path</span> (fx) edge [connect] (theta)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>      (xx) edge [connect] (fx);</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="index_files/figure-html/unnamed-chunk-7-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>What is <span class="math inline">\(\theta\)</span>?</li>
+<li>Is <span class="math inline">\(\theta\)</span> larger than <span class="math inline">\(\theta_0\)</span>?</li>
+<li>How confident am I that <span class="math inline">\(\theta \in (\theta_l,\theta_u)\)</span>?</li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="figures/00-probstats.jpeg" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="figures/00-probstats.jpeg" class="quarto-figure quarto-figure-center figure-img" style="height:85.0%"></a></p>
+</figure>
+</div>
 
 
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Which is a special case of the binomial distribution which you might be more familiar with (<span class="math inline">\(n=1\)</span>).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Non-independence could be you liking whatever your friend likes! You know, becase you’re BFFs.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -682,8 +1648,40 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ubdmaths/sm4331notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ubdmaths/sm4331notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/ubdmaths/sm4331notes/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ubdmaths/sm4331notes/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+</body></html>

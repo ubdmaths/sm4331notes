@@ -15,5 +15,6 @@ cat(readr::read_file("maths_shortcuts.tex"))
 # R libraries
 library(tidyverse)
 theme_set(theme_bw())
+library(gt)
 ```
 
