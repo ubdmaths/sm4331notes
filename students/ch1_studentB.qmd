@@ -7,3 +7,7 @@ Caption for the image.
 :::
 
 @fig-placeholder shows an image.
+
+# Definition 5
+
+Let $Z_{1},...,Z_{k}$
