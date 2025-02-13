@@ -1,31 +1,11 @@
 ---
-title: "merged.files"
-format: html
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
-{< lipsum 1 >}}
+{{< include students/ch1_studentA.qmd >}}
 
-::: {#fig-placeholder}
-{{< placeholder 400 200 >}}
+{{< include students/ch1_studentB.qmd >}}
 
-Caption for the image.
-:::
-
-@fig-placeholder shows an image.
-
-{{< lipsum 1 >}}
-
-::: {#exm-normaldist}
-$$
-y \sim \text{N}(\mu, \sigma^2)
-$$
-:::
-$$
-
-$$
-
-# Definition 1 (Statistics)
-
-A statistic is any function :::
-
-Check out <https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs> for more div types (like theorem, lemmas, proofs, etc.).
+{{< include students/ch1_studentC.qmd >}}

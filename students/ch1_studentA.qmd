@@ -4,7 +4,18 @@
 $$
 y \sim \text{N}(\mu, \sigma^2)
 $$
-hello
 :::
+
+$$
+x_n
+$$
+
+# Definition 1 (Statistics)
+
+A statistic is any function :::
+
+Let $$
+X_1, \dots, X_n \sim \text{N}(\mu, \sigma^2).
+$$ What is the distribution of the sum of squares?
 
 Check out <https://quarto.org/docs/authoring/cross-references.html#theorems-and-proofs> for more div types (like theorem, lemmas, proofs, etc.).
