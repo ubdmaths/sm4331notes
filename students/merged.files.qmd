@@ -1,11 +1,7 @@
----
-editor: 
-  markdown: 
-    wrap: 72
----
+# Definition 1
 
-{{< include students/ch1_studentA.qmd >}}
+{{< include ch1_studentA.qmd >}}
 
-{{< include students/ch1_studentB.qmd >}}
+{{< include ch1_studentB.qmd >}}
 
-{{< include students/ch1_studentC.qmd >}}
+{{< include ch1_studentC.qmd >}}
