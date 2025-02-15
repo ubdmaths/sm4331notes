@@ -1,1 +1,85 @@
+# Random Sampling
 
+When experimenting, the data collected can be represented or modeled as a set of **random variables** that describe the observed values.
+
+We can model this by assuming $X = {X_1,\dots, X_n}$ sampled from a population whose pdf or pmf is $f_x(x)$
+
+We can write this as $${X_1,\dots, X_n} \sim f_x(x)$$
+
+::: {#nte-sampling}
+**Key Assumption** 📌: The distribution $f_x$ is imposed on data as a model.
+:::
+
+## Independent and Identically Distributed (IID) Samples
+
+The samples are assumed to be:
+
+-   Independent: No relationship between observations.
+-   Identical Distribution: Each sample follows the same probability distribution.
+
+As a result, the **joint probability density function (pdf)** can be written as:
+
+$$ f_X(X_1, \dots, X_n) = \prod_{i=1}^{n} f(X_i) $$
+
+If from a parametric family:
+
+$$ f_X(X_1, \dots, X_n |\theta) = \prod_{i=1}^{n} f(X_i|\theta) $$
+
+# Statistics and Sampling Distributions
+
+::: {#def-statistics}
+**Definition 1(Statistics)**
+
+A function of the sample $T_n = T(X_1, \dots, X_n)$ that does not depend on unknown parameters, **only on observables**.
+:::
+
+Two common examples:
+
+-   the sample mean
+
+$$
+\bar{X} = \frac{1}{n} \sum_{i=1}^{n} X_i 
+$$
+
+-   the sample variance (unbiased)
+
+$$
+S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2
+$$
+
+These are used to estimate the true population mean $\mu$ and variance $\sigma^2$ respectively.
+
+## Sampling Distribution
+
+Since a **statistic** is a random variable, it follows a probability **distribution**. Understanding this distribution allows us to assess how well the statistic estimates the true population parameter.
+
+Key considerations that we need to include:
+
+-   What is the **expected value** of the statistic?
+-   How **close** is it to the population parameter $\theta$?
+-   What is the probability that the statistic falls within a small range of $\theta$, i.e. $T_n - \theta| < \epsilon$?
+
+This analysis is fundamental in inferential statistics, as it helps determine the reliability and accuracy of estimators.
+
+### Properties of Sample Mean and Variance estimators
+
+::: {#thm-properties}
+**Theorem 2**
+:::
+
+### Normal random samples
+
+::: {thm-random samples} **Theorem 4**
+
+:::
+
+# $\chi^2$-Distribution
+
+::: {def-chi-square dist.}
+
+:::
+
+
+::: {lem-chi-square}
+
+:::
