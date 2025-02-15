@@ -7,3 +7,7 @@
 ## $F$-Distribution
 
 {{< include "ch3_wani.qmd" >}}
+
+## Proof of Theorem
+
+{{< include "ch3_beah.qmd" >}}
