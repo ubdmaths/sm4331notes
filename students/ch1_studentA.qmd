@@ -1,14 +1,34 @@
-{{< lipsum 1 >}}
+---
+title: "Introduction and Chi-square Distribution"
+author: "Aribah"
+editor: visual
+crossref:
+lof-title: "List of Figures"
+format: pdf
+---
 
-::: {#exm-normaldist}
-$$
-y \sim \text{N}(\mu, \sigma^2)
-$$
+# Random Sampling
+
+When experimenting, the data collected can be represented or modeled as a set of **random variables** that describe the observed values.
+
+We can model this by assuming $X = {X_1,\dots, X_n}$ sampled from a population whose pdf or pmf is $f_x(x)$
+
+We can write this as $${X_1,\dots, X_n} \sim f_x(x)$$
+
+::: {#nte-sampling}
+Key Assumption 📌: The distribution $f_x$ is imposed on data as a model.
 :::
 
-$$
-x_n
-$$
+## Independent and Identically Distributed (IID) Samples
+
+The samples are assumed to be:
+
+-   Independent: No relationship between observations.
+-   Identical Distribution: Each sample follows the same probability distribution.
+
+As a result, the **joint probability density function (pdf)** can be written as:
+
+$$ f_X(X_1, \dots, X_n) = \prod_{i=1}^{n} f(X_i) $$
 
 # Definition 1 (Statistics)
 
