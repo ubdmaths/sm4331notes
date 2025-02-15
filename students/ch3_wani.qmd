@@ -1,0 +1,49 @@
+---
+title: "F-Distribution"
+author: "Syazwani"
+editor: visual
+crossref:
+  lof-title: "List of Figures"
+format: pdf
+---
+
+# F-distribution
+
+## Definition
+
+::: {#def-line}
+**Definition:** Let $X_1 \sim X_{k1}^2$. Then, the distribution of
+
+$$
+Y = \frac{X_1 / k_1}{X_2 / k_2}
+$$
+
+is called the $F$-distribution with ($k_1,k_2$) degrees of freedom. We write $Y \sim F_{k_1,k_2}$
+:::
+
+## Probability Density Function (PDF)
+
+::: callout-note
+**PDF:**
+
+$$
+f(y) = \frac{1}{yB(k_1/2, k_2/2)}\sqrt{\frac{(k_1y)^{k_1}k_2 ^{k_2}}{(k_1y + k_2)^{k_1 + k_2}}} \hspace{10mm} \left({y \in \mathbb{R} \mid y>0} \right)
+$$
+:::
+
+::: columns
+### Expected Value and Variance
+
+| **E(Y)** | **Var(Y)** |
+|:--:|:--:|
+| $\frac{k_2}{k_2 - 2}$ | $\frac{2k^2(k_1 + k_2 - 2)}{k_1(k_2 - 2)^2(k_2 - 4)}$ |
+:::
+
+::: columns
+### Properties of $F$-distribution
+
+|          if          |           then            |
+|:--------------------:|:-------------------------:|
+| $Y \sim F_{k_1,k_2}$ | $Y^{-1} \sim F_{k_2,k_1}$ |
+|     $T \sim t_k$     |    $T^2 \sim F_{1,k}$     |
+:::
