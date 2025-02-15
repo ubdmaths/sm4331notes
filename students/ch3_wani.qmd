@@ -7,8 +7,6 @@ crossref:
 format: pdf
 ---
 
-## Definition
-
 ::: {#def-line style="background-color: lightblue; padding: 10px; border-radius: 5px;"}
 Let $X_1 \sim X_{k1}^2$. Then, the distribution of
 

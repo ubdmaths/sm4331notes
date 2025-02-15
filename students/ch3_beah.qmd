@@ -5,10 +5,10 @@ crossref:
   lof-title: "List of Figures"
 format: pdf
 ---
-
-::: {#thm-line}
+:::: {#thm-line}
 ## Properties of the Sample Mean & Variance
 
+::: {style="background-color: lightblue; padding: 10px; border-radius: 5px;"}
 Let $( {X_1, \dots, X_n} )$ be a random sample from $\operatorname{N}(\mu, \sigma^2)$. Define:
 
 -   Sample mean: $$ \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i $$
@@ -22,5 +22,6 @@ Then:
 3)  $\bar{X}$ and $S^2$ are independent.
 4)  $\frac{\bar{X} - \mu}{SE(\bar{X})} \sim t_{n-1}$
 :::
+:::: 
 
 Aite, now we'll do the proving!
