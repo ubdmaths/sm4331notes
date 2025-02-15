@@ -1,0 +1,7 @@
+---
+title: "Proof of Theorem"
+editor: visual
+crossref:
+  lof-title: "List of Figures"
+format: pdf
+---
