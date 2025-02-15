@@ -7,12 +7,10 @@ crossref:
 format: pdf
 ---
 
-# F-distribution
-
 ## Definition
 
-::: {#def-line}
-**Definition:** Let $X_1 \sim X_{k1}^2$. Then, the distribution of
+::: {#def-line style="background-color: lightblue; padding: 10px; border-radius: 5px;"}
+Let $X_1 \sim X_{k1}^2$. Then, the distribution of
 
 $$
 Y = \frac{X_1 / k_1}{X_2 / k_2}
@@ -31,19 +29,19 @@ f(y) = \frac{1}{yB(k_1/2, k_2/2)}\sqrt{\frac{(k_1y)^{k_1}k_2 ^{k_2}}{(k_1y + k_2
 $$
 :::
 
-::: columns
 ### Expected Value and Variance
 
+::: {#table-style style="background-color: lightyellow; padding: 15px; border-radius: 5px;"}
 | **E(Y)** | **Var(Y)** |
-|:--:|:--:|
+|:----------------------------------:|:----------------------------------:|
 | $\frac{k_2}{k_2 - 2}$ | $\frac{2k^2(k_1 + k_2 - 2)}{k_1(k_2 - 2)^2(k_2 - 4)}$ |
 :::
 
-::: columns
 ### Properties of $F$-distribution
 
 |          if          |           then            |
 |:--------------------:|:-------------------------:|
 | $Y \sim F_{k_1,k_2}$ | $Y^{-1} \sim F_{k_2,k_1}$ |
 |     $T \sim t_k$     |    $T^2 \sim F_{1,k}$     |
+
 :::
