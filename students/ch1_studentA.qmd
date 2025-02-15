@@ -3,7 +3,7 @@ title: "Introduction and Chi-square Distribution"
 author: "Aribah"
 editor: visual
 crossref:
-lof-title: "List of Figures"
+  lof-title: "List of Figures"
 format: pdf
 ---
 

@@ -1,7 +1,9 @@
-# Definition 1
+# Chapter 3: Sampling from the normal distribution
 
-{{< include ch1_studentA.qmd >}}
+## Introduction
 
-{{< include ch1_studentB.qmd >}}
+{{< include "ch1_studentA.qmd" >}}
 
-{{< include ch1_studentC.qmd >}}
+## $F$-Distribution
+
+{{< include "ch3_wani.qmd" >}}
