@@ -65,21 +65,38 @@ This analysis is fundamental in inferential statistics, as it helps determine th
 
 ::: {#thm-properties}
 **Theorem 2**
+
+Let $X_1,\dots, X_n$ be an independent sample from a population with mean $\mu$ and variance $\sigma^2 < \infty$. Assuming that their mgf exists and is equal to $M_X(t)$, then:
+
+i.  $E(\bar{X}) = \mu$
+ii. $Var(\bar{X}) = \frac{\sigma^2}{n}$
+iii. $E(S^2) = \sigma^2$
+iv. $M_\bar{X}(t) = [M_X(\frac{t}{n})]^n$
 :::
 
 ### Normal random samples
 
-::: {thm-random samples} **Theorem 4**
+::: {thm-randomsample}
+**Theorem 4** Let $\{X_1, \dots, X_n\}$ be an independent sample from $\text{N}(\mu, \sigma^2)$. Then,
 
+i.  $\bar{X} \sim \text{N}(\mu, \frac{\sigma^2}{n})$
+ii. $(n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}$
+iii. $\bar{X}$ and $S^2$ are independent rvs
+iv. $\frac{\sqrt{\bar{X}-\mu}}{S} \sim \text{t}_{n-1}$
 :::
 
-# $\chi^2$-Distribution
+# χ²-Distribution
 
-::: {def-chi-square dist.}
+::: {def-chisquare}
+**Definition 5 (**$\chi^2$-distribution)
 
+Let $Z_1, \dots, Z_k \overset{\text{iid}}{\sim}\text{N}(0, 1)$, i.e. each $Z_i$ has pdf $f(Z_i) = (2\pi)^{-1/2}e^{-Z_i^2/2}$ for $i = 1, \dots, k$. Then,
+
+$$
+X = {Z_1}^2 + \dots + {Z_k}^2 = \sum_{i=1}^{k} {Z_i}^2
+$$ follows a $\chi^2$-distribution with $k \in \mathbb{N}$ degrees of freedom. We can write this as $X \sim \chi_{k}^{2}$.
 :::
 
+The pdf of a $\chi_{k}^{2}$-distribution is
 
-::: {lem-chi-square}
 
-:::
