@@ -129,3 +129,25 @@ P(X \leq x) = \int^x_0 f_X(\tilde{x}) d\tilde{x}
 $$
 
 where $f_X(x)$ is the probability density function (pdf) of the $\chi^2$ distribution. This integral **cannot be solved exactly** in general, so we rely on **approximations and probability tables**.
+
+### Finding $P(X \leq x)$ using a $\chi^2$ Probability table.
+
+These tables provide values for the percentile $\chi^2_k(\alpha)$, which satisfies:
+
+$$
+P(X \leq x) = A = 1 - \alpha
+$$
+
+for different significance levels $\alpha$ and degrees of freedom $k$.
+
+### Why is the $\chi^2$ distribution Important?
+
+It plays a fundamental role due to its connection to variance estimation and hypothesis testing. It is widely used in:
+
+-   The goodness-of-fit test - to determine how well observed data fits an expected distribution.
+
+-   Tests for Independence - Evaluates whether two categorical variables are independent in contingency tables.
+
+-   Variance Estimation - used to construct confidence intervals for population variance $\sigma^2$ .
+
+-   Analysis of Variance (ANOVA) - the $\chi^2$ distribution helps compare variances across multiple groups.
