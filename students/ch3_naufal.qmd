@@ -1,0 +1,51 @@
+---
+title: "t-distribution"
+author: Naufal
+date: 16th Feb 2024
+reference: lecture notes chapter 3 (Sampling from th enormal distributions), page 13-16
+---
+
+# t-Ditribution
+
+Definiton: Let $Z \sim N(0,1)$ and $X \sim \chi^2_k$ with $X$ independent of $Z$. Then, $$
+T = \frac{Z}{\sqrt{\frac{X}{k}}}
+$$ is the t-distribution with $k$ degrees of freedom or 'easier' in terms, $T \sim t_k$.
+
+Note: $E(T)=0$ and $Var(T)=\frac{k}{k-2}$.
+
+## pdf of t-distribution
+
+.. is given by;
+
+$$
+f(t) = \frac{\Gamma\left(\frac{k + 1}{2}\right)}{\sqrt{k \pi} \, \Gamma\left(\frac{k}{2}\right)} \left( 1 + \frac{t^2}{k} \right)^{-\frac{k + 1}{2}}
+$$ note: $\Gamma()$ is the gamma function.
+
+## lemma
+
+Let $T \sim t_k$ and $Z \sim N(0,1)$. Then $f_T(t) \rightarrow f_Z(t)$ as $k \rightarrow \infty$. In other words, the pdf of a t-distribution converges to the pdf of a standard normal ditribution, as k gets infinitely large.
+
+Proof: the pdf of a t-distribtution is.. $$
+f(t) = \frac{\Gamma\left(\frac{k + 1}{2}\right)}{\sqrt{k \pi} \, \Gamma\left(\frac{k}{2}\right)} \left( 1 + \frac{t^2}{k} \right)^{-\frac{k + 1}{2}}
+$$ and given that if k is large, $$
+\Gamma(k) = \sqrt\frac{2\pi}{k}\left(\frac{k}{e} \right)^k
+$$ we have $$
+f(t) = \frac{1}{\sqrt{k\pi}}
+\cdot
+\frac{
+\sqrt\frac{\pi}{k+1}\left(\frac{k+1}{2e}\right)^\frac{k+1}{2}}
+{\sqrt\frac{\pi}{k} \left(\frac{k}{2e}\right)^\frac{k}{2}} 
+\left( 1 + \frac{t^2}{k} \right)^{-\frac{k + 1}{2}}
+$$ simplifying this gives $$
+f(t) = \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\sqrt{e}} \left(1 + \frac{1}{k} \right)^\frac{k}{2} \left(1 + \frac{t^2}{k} \right)^{-\frac{k+1}{2}}
+$$ then, knowing that something called compound interest, where $$
+e^x =\lim_{k \rightarrow \infty}\left(1 + \frac{x}{k}\right)^k
+$$
+
+knowing the above, simpify again $$
+f(t) = \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{\sqrt{e}} \cdot e^\frac{1}{2} \cdot e^\frac{t^2}{2}
+$$
+
+$$
+f(t) = \frac{1}{\sqrt{2\pi}} \cdot e^{-\frac{t^2}{2}}
+$$ .. and this is the pdf of a standard normal distribution. #shown
