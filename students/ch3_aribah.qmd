@@ -57,7 +57,7 @@ Key considerations that we need to include:
 
 -   What is the **expected value** of the statistic?
 -   How **close** is it to the population parameter $\theta$?
--   What is the probability that the statistic falls within a small range of $\theta$, i.e. $T_n - \theta| < \epsilon$?
+-   What is the probability that the statistic falls within a small range of $\theta$, i.e. $|T_n - \theta| < \epsilon$?
 
 This analysis is fundamental in inferential statistics, as it helps determine the reliability and accuracy of estimators.
 
@@ -77,7 +77,9 @@ iv. $M_\bar{X}(t) = [M_X(\frac{t}{n})]^n$
 ### Normal random samples
 
 ::: {thm-randomsample}
-**Theorem 4** Let $\{X_1, \dots, X_n\}$ be an independent sample from $\text{N}(\mu, \sigma^2)$. Then,
+**Theorem 4**
+
+Let $\{X_1, \dots, X_n\}$ be an independent sample from $\text{N}(\mu, \sigma^2)$. Then,
 
 i.  $\bar{X} \sim \text{N}(\mu, \frac{\sigma^2}{n})$
 ii. $(n-1)\frac{S^2}{\sigma^2} \sim \chi^2_{n-1}$
@@ -99,4 +101,31 @@ $$ follows a $\chi^2$-distribution with $k \in \mathbb{N}$ degrees of freedom. W
 
 The pdf of a $\chi_{k}^{2}$-distribution is
 
+$$
+f(x) = \frac{1}{2^\frac{k}{2}\Gamma(k/2)}x^{\frac{k}{2}-1}e^\frac{-x}{2}
+$$
 
+-   Support: $0 \leq x < \infty$
+-   Parameters: $k$ (d.f)
+-   $E(X) = k$
+-   $Var(X) = 2k$
+
+::: {lem-chisquare}
+**Lemma 6**
+
+If $X_1 \sim \chi^2_{k_1}$ and $X_2 \sim \chi^2_{k_2}$, and $X_1 \perp\!\!\!\perp X_2$, then $X_1 + X_2 \sim \chi^2_{k_1 + k_2}$.
+:::
+
+## Probability table for the χ²-Distribution
+
+**Key Idea**💡 : Why use probability tables for $\chi^2$?
+
+The probability $P(X \leq x)$ for a $\chi^2$-distributed random variable **cannot be calculated in closed form** because its cumulative distribution function (CDF) involves an incomplete gamma function. Instead, we use numerical methods or probability tables.
+
+If $X \sim \chi^2_k$ , the probability of obtaining a value $x$ or smaller is:
+
+$$
+P(X \leq x) = \int^x_0 f_X(\tilde{x}) d\tilde{x}
+$$
+
+where $f_X(x)$ is the probability density function (pdf) of the $\chi^2$ distribution. This integral **cannot be solved exactly** in general, so we rely on **approximations and probability tables**.
