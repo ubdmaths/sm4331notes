@@ -5,6 +5,7 @@ crossref:
   lof-title: "List of Figures"
 format: pdf
 ---
+
 :::: {#thm-line}
 ## Properties of the Sample Mean & Variance
 
@@ -22,6 +23,71 @@ Then:
 3)  $\bar{X}$ and $S^2$ are independent.
 4)  $\frac{\bar{X} - \mu}{SE(\bar{X})} \sim t_{n-1}$
 :::
-:::: 
+::::
 
 Aite, now we'll do the proving!
+
+:::: proof
+i)  $\bar{X} \sim \operatorname{N}(\mu, \frac{\sigma^2}{n})$
+
+$$
+\bar{X} = \sum_{i=1}^{n} \frac{X_i}{n} \tag{1}
+$$
+
+$$
+= \frac{1}{n} (X_1 + \dots + X_n) \tag{2}
+$$
+
+$$
+\therefore \bar{X} \text{ is also normal.}
+$$
+
+$$
+E(\bar{X}) = \frac{1}{n} \sum_{i=1}^{n} E(X_i) \tag{3}
+$$
+
+$$
+= \frac{1}{n} \sum_{i=1}^{n} \mu \tag{4}
+$$
+
+$$
+= \mu 
+$$
+
+$$
+\operatorname{Var}(\bar{X}_n) = \operatorname{Var}(\frac{1}{n} \sum X_i) \tag{5}
+$$ $$
+= \frac{1}{n^2} \sum \operatorname{Var} (X_i) \tag{6}
+$$ $$
+= \frac{1}{n^2} \sum \sigma^2 \tag{7}
+$$ $$
+= \frac{1}{n^2} \times n \sigma^2 = \frac{\sigma^2}{n}
+$$ $$
+∵ \bar{X} \sim \operatorname{N} (\mu, \frac{\sigma^2}{n})
+$$
+
+::: {.callout-note}
+- The factor $\frac{1}{n}$ in **Eq. (4)** is placed in front because it’s a constant.\
+- The sum $\sum_{i=1}^{n} \mu$ in **Eq. (5)** simplifies to $n\mu$, so $n$ cancels out. \
+:::
+
+::: {.callout-warning}
+The variance of a linear combination is:
+$$
+\operatorname{Var}(aX + Y) = a^2 \operatorname{Var} (X) + \operatorname{Var} (Y) +2a \operatorname{Cov}(X,Y)
+$$
+If $X \perp Y$, then $\operatorname{Cov}(X,Y) = 0$, so:
+$$
+\operatorname{Var}(aX + Y) = a^2 \operatorname{Var} (X) + \operatorname{Var} (Y)
+$$
+
+Though, independence does not always imply zero covariance.
+$$
+X \perp Y \nLeftarrow \operatorname{Cov}(X,Y) = 0 
+$$
+
+EXCEPT when $X$ and $Y$ are normal, then it goes both ways such that independence **does** imply zero covariance.
+:::
+
+
+::::
