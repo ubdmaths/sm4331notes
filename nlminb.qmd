@@ -136,7 +136,9 @@ expand_grid(
   geom_contour(color = "white") +
   scale_fill_viridis_c() +
   annotate("point", x = nu, y = alpha, color = "red3", size = 2) +
-  annotate("text", x = nu, y = alpha + 0.1, label = "MLE", color = "red3") +
+  annotate("text", x = nu, y = alpha + 0.1, label = "Truth", color = "red3", vjust = 4) +
+  annotate("point", x = nu_hat, y = alpha_hat, size = 2) +
+  annotate("text", x = nu_hat, y = alpha_hat + 0.1, label = "MLE", vjust = 0.5, hjust = 1) +
   scale_x_continuous(labels = scales::dollar, expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(
