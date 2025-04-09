@@ -34,6 +34,7 @@ book:
     - chapter5.qmd
     - chapter6.qmd
     - chapter7.qmd
+    - nlminb.qmd
     - references.qmd
 
 bibliography: refs.bib
